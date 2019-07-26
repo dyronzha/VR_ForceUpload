@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class RoboArmControl : MultiContolBase
 {
-    public RoboArmControl(Transform t, Vector3 pos) :base(t,pos) {
+    Valve.VR.SteamVR_Action_Boolean GribAction;
+    public RoboArmControl(Transform t, Transform look) :base(t, look) {
 
+    }
+
+    public void GiveInputAction(Valve.VR.SteamVR_Action_Boolean grib)
+    {
+        GribAction = grib;
     }
 
     // Start is called before the first frame update
