@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DroneControl : MultiContolBase
 {
-    public DroneControl(Transform t, Vector3 pos) : base(t, pos)
+    public DroneControl(Transform t, Transform look) : base(t, look)
     {
 
     }

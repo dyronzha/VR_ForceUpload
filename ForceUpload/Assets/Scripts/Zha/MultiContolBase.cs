@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class MultiContolBase 
 {
-    Transform tranform;
-    Vector3 lookPos;
+    public Transform tranform;
+    public Transform whereLook;
 
-    public MultiContolBase(Transform t, Vector3 pos) {
+    protected Transform leftHand, rightHand;
+
+
+
+
+    public MultiContolBase(Transform t, Transform look) {
         tranform = t;
-        lookPos = pos;
+        whereLook = look;
+    }
+    public void SetHands(Transform left, Transform right) {
+        leftHand = left;
+        rightHand = right;
     }
 
     // Start is called before the first frame update
-    public virtual void Init(Transform t, Vector3 pos)
+    public virtual void Init(Transform t, Transform pos)
     {
 
     }

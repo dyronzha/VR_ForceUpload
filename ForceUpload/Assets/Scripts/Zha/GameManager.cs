@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
+    public static GameManager Instance {
+        get {
+            return instance;
+        }
+    }
+
+    PlayerControl player;
+
     Dictionary<string, MultiContolBase> multiControlsDic = new Dictionary<string, MultiContolBase>();
 
     // Start is called before the first frame update
     private void Awake()
     {
+        instance = this;
+        player = GameObject.Find("[CameraRig]").GetComponent<PlayerControl>();
+
         Transform control = GameObject.Find("SpiralElevator").transform;
-        SpiralElevatorControl spiralElevatorControl = new SpiralElevatorControl(control, control.Find("Pos").position);
+        SpiralElevatorControl spiralElevatorControl = new SpiralElevatorControl(control, control.Find("Pos"));
+        spiralElevatorControl.SetHands(player.rightHand,player.leftHand);
         multiControlsDic.Add(control.name, spiralElevatorControl);
 
         control = GameObject.Find("RoboArm").transform;
-        RoboArmControl roboArmControl = new RoboArmControl(control, control.Find("Pos").position);
+        RoboArmControl roboArmControl = new RoboArmControl(control, control.Find("Pos"));
         multiControlsDic.Add(control.name, roboArmControl);
 
         control = GameObject.Find("Drone").transform;
-        DroneControl droneControl = new DroneControl(control, control.Find("Pos").position);
+        DroneControl droneControl = new DroneControl(control, control.Find("Pos"));
         multiControlsDic.Add(control.name, droneControl);
 
     }
@@ -30,14 +43,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log(LookUpMultiControl("RoboArm"));
-        }
+       
     }
 
     public MultiContolBase LookUpMultiControl(string name) {
         if (multiControlsDic.ContainsKey(name))
         {
+            Debug.Log(multiControlsDic[name]);
             return multiControlsDic[name];
         }
         else {
