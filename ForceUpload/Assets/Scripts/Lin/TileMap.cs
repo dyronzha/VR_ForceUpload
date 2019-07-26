@@ -70,12 +70,13 @@ public class TileMap : MonoBehaviour{
         }
     }
 
-    public bool CheckTileWalkable(float posX,float posZ) {
+    public int CheckTileWalkable(float posX,float posZ) {
         int x = (int)posX;
         int z = (int)posZ;
-
-        if (TileState[x, z].On_Occupy == false && _tiletypes[tiles[x, z]].isWalkable == true) return true;
-        else return false;
+        if (x > 6 || z > 6) return 2;
+        else if (tiles[x, z] == 3) return 3;
+        else if (TileState[x, z].On_Occupy == false && _tiletypes[tiles[x, z]].isWalkable == true) return 1;
+        else return 2;
     }
 
     public void SetTileOccupy(float posX, float posZ,bool State) {

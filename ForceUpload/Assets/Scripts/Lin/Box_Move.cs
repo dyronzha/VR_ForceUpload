@@ -5,10 +5,10 @@ using UnityEngine;
 public class Box_Move : MonoBehaviour{
     public Vector3 Ini_Start;
     public Vector3 Ini_End;
-    float speed = 0.4f;
+    public float speed = 0.4f;
     float FirstSpeed;
     public TileMap _tilemap;
-    bool NextPosisWalkable = false;
+    int NextPosisWalkable = 1;  //1可行，2//不行，3輸送帶
 
     void Start(){
         FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
@@ -20,7 +20,7 @@ public class Box_Move : MonoBehaviour{
             Ini_Start = transform.position;
             Ini_End = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
             NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x,Ini_End.z);
-            if (NextPosisWalkable == true) {
+            if (NextPosisWalkable == 1 ||NextPosisWalkable == 3) {
                 _tilemap.SetTileOccupy(Ini_Start.x, Ini_Start.z, false);
                 _tilemap.SetTileOccupy(Ini_End.x,Ini_End.z,true);
                 speed = CalculateNewSpeed();
@@ -31,7 +31,7 @@ public class Box_Move : MonoBehaviour{
             Ini_Start = transform.position;
             Ini_End = new Vector3(transform.position.x, transform.position.y, transform.position.z-1);
             NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
-            if (NextPosisWalkable == true){
+            if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
                 _tilemap.SetTileOccupy(Ini_Start.x, Ini_Start.z, false);
                 _tilemap.SetTileOccupy(Ini_End.x, Ini_End.z, true);
                 speed = CalculateNewSpeed();

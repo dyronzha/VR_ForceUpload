@@ -11,6 +11,8 @@ public class PatrolRobot : MonoBehaviour{
     float speed = 0.4f;
     float FirstSpeed;
 
+    TileMap _tilemap;
+
     void Start(){
         FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
     }
