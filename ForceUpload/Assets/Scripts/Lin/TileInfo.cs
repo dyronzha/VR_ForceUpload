@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TileInfo : MonoBehaviour{
 
+    public bool On_Occupy = false;
+
     void Start(){
         
     }
@@ -12,4 +14,5 @@ public class TileInfo : MonoBehaviour{
     void Update(){
         
     }
+
 }

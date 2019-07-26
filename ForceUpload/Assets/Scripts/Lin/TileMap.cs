@@ -14,7 +14,10 @@ public class TileMap : MonoBehaviour{
     int mapSizeX = 7;
     int mapSizeZ = 7;
 
+    public TileInfo[,] TileState;
+
     void Start(){
+        TileState = new TileInfo[mapSizeX, mapSizeZ];
         GenerateMapData();
         GenerateMapVisual();
     }
@@ -61,14 +64,24 @@ public class TileMap : MonoBehaviour{
             for (int z = 0; z < mapSizeZ; z++){
                 TileType tt = _tiletypes[tiles[x, z]];
                 GameObject ChessboardRoad = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x, 0.0f, z), Quaternion.identity);
-
-                //if (tiles[x, z] == 0){
-                //    ChessboardRoad.transform.rotation = Quaternion.Euler(90, 0, 0);
-                //}
-
+                TileState[x, z] = ChessboardRoad.GetComponent<TileInfo>();
                 ChessboardRoad.transform.SetParent(transform);
             }
         }
+    }
+
+    public bool CheckTileWalkable(float posX,float posZ) {
+        int x = (int)posX;
+        int z = (int)posZ;
+
+        if (TileState[x, z].On_Occupy == false && _tiletypes[tiles[x, z]].isWalkable == true) return true;
+        else return false;
+    }
+
+    public void SetTileOccupy(float posX, float posZ,bool State) {
+        int x = (int)posX;
+        int z = (int)posZ;
+        TileState[x, z].On_Occupy = State;
     }
 
 }
