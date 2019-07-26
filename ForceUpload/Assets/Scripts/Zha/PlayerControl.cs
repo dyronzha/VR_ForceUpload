@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour
 
     bool isTransTouchDown = false, goTrans = false;
     float transTime = .0f;
-    Transform HUDCamera, curTransHand, lineReticle, staticCamera;
+    Transform HUDCamera, curTransHand, lineReticle;
     LayerMask transMask;
 
     Vector3 cameraOffset;
@@ -42,8 +42,6 @@ public class PlayerControl : MonoBehaviour
         lineReticle = transform.Find("Reticle");
         transMask = otherControlMask;
 
-        staticCamera = transform.Find("StaticCamera");
-        staticCamera.gameObject.SetActive(false);
     }
     void Start()
     {
@@ -67,7 +65,7 @@ public class PlayerControl : MonoBehaviour
     private void LateUpdate()
     {
         if (!roboMod) {
-            HUDCamera.localPosition = cameraOffset;
+            transform.position = Vector3.Lerp(transform.position, transform.position - (HUDCamera.localPosition - cameraOffset), Time.deltaTime*10.0f);
         }
     }
 
@@ -109,20 +107,17 @@ public class PlayerControl : MonoBehaviour
 
                     goTrans = true;
                     SteamVR_Fade.Start(Color.clear, 0);
-                    SteamVR_Fade.Start(Color.black, 0.3f);
+                    SteamVR_Fade.Start(Color.black, 0.8f);
                     if (roboMod)
                     {
                         //HUDCamera.GetComponent<Camera>().enabled = false;
-                        staticCamera.gameObject.SetActive(true);
-                        staticCamera.position = targetControl.whereLook.position;
-                        staticCamera.rotation = targetControl.whereLook.rotation;
                         //UnityEngine.XR.InputTracking.disablePositionalTracking = true;
+                        cameraOffset = HUDCamera.localPosition;
                         transMask = oringinMask;
                     }
                     else
                     {
                         //HUDCamera.GetComponent<Camera>().enabled = enabled;
-                        staticCamera.gameObject.SetActive(false);
                         //UnityEngine.XR.InputTracking.disablePositionalTracking = false;
                         transMask = otherControlMask;
                     }
@@ -142,8 +137,8 @@ public class PlayerControl : MonoBehaviour
         transTime += Time.deltaTime;
         if (transTime > 0.5f) {
             transTime = .0f;
-            //transform.position = targetControl.whereLook.position - HUDCamera.transform.localPosition;
-            //transform.rotation = targetControl.whereLook.rotation;
+            transform.position = targetControl.whereLook.position - HUDCamera.transform.localPosition;
+            transform.rotation = targetControl.whereLook.rotation;
             goTrans = false;
         }
     }
