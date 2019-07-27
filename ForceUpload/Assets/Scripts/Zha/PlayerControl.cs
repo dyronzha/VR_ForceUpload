@@ -61,6 +61,7 @@ public class PlayerControl : MonoBehaviour
         playerRobot = new PlayerRobot();
         playerRobot.Init(player);
         targetControl = control;
+        player.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -172,7 +173,10 @@ public class PlayerControl : MonoBehaviour
                         //UnityEngine.XR.InputTracking.disablePositionalTracking = true;
 
                         transMask = oringinMask;
+                        playerRobot.transform.localPosition = new Vector3(HUDCamera.localPosition.x, transform.localPosition.y, HUDCamera.localPosition.z);
+                        transform.rotation = Quaternion.LookRotation(new Vector3(HUDCamera.forward.x, 0, HUDCamera.forward.z), Vector3.up);
                         playerRobot.transform.parent = null;
+
                         playerRobot.gameObject.SetActive(true);
 
                     }
@@ -198,7 +202,9 @@ public class PlayerControl : MonoBehaviour
             {
                 goBlcak = true;
                 blackOut.enabled = false;
-                blackOut.color = new Color(0, 0, 0, 1);
+                //blackOut.color = new Color(0, 0, 0, 1);
+
+
 
                 transTime = .0f;
                 transform.position = targetControl.whereLook.position - HUDCamera.transform.localPosition;

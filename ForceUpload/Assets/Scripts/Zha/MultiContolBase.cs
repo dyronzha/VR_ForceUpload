@@ -26,7 +26,7 @@ public class MultiContolBase
     // Start is called before the first frame update
     public virtual void Init()
     {
-        transform.gameObject.SetActive(false);
+        //transform.gameObject.SetActive(false);
     }
     public virtual void Awake() {
     }
@@ -34,7 +34,10 @@ public class MultiContolBase
     // Update is called once per frame
     public virtual void Update(float dt)
     {
-        transform.localPosition = new Vector3(HUDCamera.localPosition.x, transform.localPosition.y, HUDCamera.localPosition.z);
-        transform.rotation = Quaternion.LookRotation(new Vector3(HUDCamera.forward.x,0, HUDCamera.forward.z), Vector3.up);
+        //transform.localPosition = new Vector3(HUDCamera.localPosition.x, transform.localPosition.y, HUDCamera.localPosition.z);
+        //transform.rotation = Quaternion.LookRotation(new Vector3(HUDCamera.forward.x,0, HUDCamera.forward.z), Vector3.up);
+
+
+
     }
 }
