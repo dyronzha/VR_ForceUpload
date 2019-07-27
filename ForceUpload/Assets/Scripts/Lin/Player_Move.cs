@@ -73,7 +73,6 @@ public class Player_Move : MonoBehaviour{
                 Debug.DrawRay(transform.position, new Vector3(0.0f, 0.0f, 0.6f));
                 if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
                     if (hit_Dir.transform.tag == "Stage3_Box") {
-                        Debug.Log("press w");
                         hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
                     }
 

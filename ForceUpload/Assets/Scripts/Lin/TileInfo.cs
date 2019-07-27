@@ -22,8 +22,6 @@ public class TileInfo : MonoBehaviour{
             float ConveyPosZ= transform.position.z;
             HUDPlayer.gameObject.GetComponent<Player_Move>().ForceConvey(ConveyPosX,ConveyPosZ,Conveyor_Dir);
         }
-
-
     }
 
 }

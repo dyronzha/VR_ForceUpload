@@ -697,6 +697,7 @@ MonoBehaviour:
   speed: 0.4
   _tilemap: {fileID: 2024243246}
   HUDPlayer: {fileID: 514202043}
+  GoalPos: {x: 2, y: 1, z: 3}
 --- !u!1 &1764614632
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +807,7 @@ MonoBehaviour:
   speed: 0.4
   _tilemap: {fileID: 2024243246}
   HUDPlayer: {fileID: 514202043}
+  GoalPos: {x: 4, y: 1, z: 4}
 --- !u!1 &1812279637
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +917,7 @@ MonoBehaviour:
   speed: 0.4
   _tilemap: {fileID: 2024243246}
   HUDPlayer: {fileID: 514202043}
+  GoalPos: {x: 2, y: 0.5, z: 6}
 --- !u!1 &1859235173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,6 +1027,7 @@ MonoBehaviour:
   speed: 0.4
   _tilemap: {fileID: 2024243246}
   HUDPlayer: {fileID: 514202043}
+  GoalPos: {x: 0, y: 0, z: 0}
 --- !u!1 &2024243245
 GameObject:
   m_ObjectHideFlags: 0

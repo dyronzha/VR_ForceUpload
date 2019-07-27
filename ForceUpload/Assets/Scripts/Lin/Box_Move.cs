@@ -11,6 +11,8 @@ public class Box_Move : MonoBehaviour{
     int NextPosisWalkable = 1;  //1可行，2//不行，3輸送帶
     public Transform HUDPlayer;
     int Push_Dir = 0;  //0為重置狀態，3向右，6向下，9向左，12向上
+    public Vector3 GoalPos;
+    bool Goal = false;
 
     void Start(){
         _tilemap.SetTileOccupy(transform.position.x, transform.position.z, true);
@@ -23,6 +25,7 @@ public class Box_Move : MonoBehaviour{
             transform.position = Vector3.Lerp(transform.position, Ini_End, speed * Time.deltaTime);
             speed = CalculateNewSpeed();
         }
+        if (transform.position.x == GoalPos.x && transform.position.z == GoalPos.z) Goal = true;
     }
 
     float CalculateNewSpeed(){
@@ -35,34 +38,37 @@ public class Box_Move : MonoBehaviour{
     }
 
     public void PushByPlayer(float HUDPosX,float HUDPosZ) {
-        //決定方向
-        if (transform.position.x > HUDPosX) Push_Dir = 3;
-        else if(transform.position.x < HUDPosX) Push_Dir = 9;
-        else if (transform.position.z > HUDPosX) Push_Dir = 12;
-        else if (transform.position.z < HUDPosX) Push_Dir = 6;
+        if (Goal == false) {
+            //決定方向
+            if (transform.position.x > HUDPosX) Push_Dir = 3;
+            else if (transform.position.x < HUDPosX) Push_Dir = 9;
+            else if (transform.position.z > HUDPosX) Push_Dir = 12;
+            else if (transform.position.z < HUDPosX) Push_Dir = 6;
 
-        //根據方向進行移動
-        Ini_Start = transform.position;
-        switch (Push_Dir) {
-            case 3:
-                Ini_End = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
-                break;
-            case 6:
-                Ini_End = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
-                break;
-            case 9:
-                Ini_End = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
-                break;
-            case 12:
-                Ini_End = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
-                break;
+            //根據方向進行移動
+            Ini_Start = transform.position;
+            switch (Push_Dir){
+                case 3:
+                    Ini_End = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                    break;
+                case 6:
+                    Ini_End = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+                    break;
+                case 9:
+                    Ini_End = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                    break;
+                case 12:
+                    Ini_End = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+                    break;
+            }
+            NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
+            if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
+                _tilemap.SetTileOccupy(Ini_Start.x, Ini_Start.z, false);
+                _tilemap.SetTileOccupy(Ini_End.x, Ini_End.z, true);
+                speed = CalculateNewSpeed();
+            }
         }
-        NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
-        if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
-            _tilemap.SetTileOccupy(Ini_Start.x, Ini_Start.z, false);
-            _tilemap.SetTileOccupy(Ini_End.x, Ini_End.z, true);
-            speed = CalculateNewSpeed();
-        }
+
     }
 
 
