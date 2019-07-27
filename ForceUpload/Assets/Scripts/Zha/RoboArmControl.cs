@@ -42,8 +42,8 @@ public class RoboArmControl : MultiContolBase
     {
        
 
-        Vector3 handDiff = new Vector3(test.position.x - HUDCamera.position.x, 0, test.position.z - HUDCamera.position.z).normalized;
-        //Vector3 handDiff = new Vector3(rightHand.position.x - HUDCamera.position.x, 0, rightHand.position.z - HUDCamera.position.z).normalized;
+        //Vector3 handDiff = new Vector3(test.position.x - HUDCamera.position.x, 0, test.position.z - HUDCamera.position.z).normalized;
+        Vector3 handDiff = new Vector3(rightHand.position.x - HUDCamera.position.x, 0, rightHand.position.z - HUDCamera.position.z).normalized;
         body.rotation = Quaternion.Lerp(body.rotation, Quaternion.LookRotation(handDiff, Vector3.up), dt*5.0f);
 
         //float handOffset = test.position.y - handInitY;
@@ -53,6 +53,7 @@ public class RoboArmControl : MultiContolBase
         else if (handOffset < -0.55f) handOffset = -0.55f;
         arm.localPosition = new Vector3(arm.localPosition.x, handOffset + armInitY, arm.localPosition.z);
 
+        Debug.Log(squeezeAction.GetAxis(Valve.VR.SteamVR_Input_Sources.RightHand));
         if ((Input.GetKeyDown(KeyCode.G) || squeezeAction.GetAxis(Valve.VR.SteamVR_Input_Sources.RightHand) > 0.8f) && !grib) {
             Collider[] hits = Physics.OverlapBox(hand.transform.position + new Vector3(0, -0.5f, 0), new Vector3(0.5f,0.5f,0.5f), hand.rotation,
                 1 << LayerMask.NameToLayer("GribObject"));
@@ -60,6 +61,7 @@ public class RoboArmControl : MultiContolBase
                 grabObject = hits[0].transform;
                 grabObject.parent = hand;
             }
+            Debug.Log(hits.Length);
         }
         else if (squeezeAction.GetAxis(Valve.VR.SteamVR_Input_Sources.RightHand) < 0.1f && grib){
             grib = false;

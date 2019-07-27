@@ -25,6 +25,11 @@ public class DroneControl : MultiContolBase
         test1 = GameObject.Find("droneC2").transform;
     }
 
+    public override void Awake()
+    {
+        HUDCamera.parent.parent = transform;
+    }
+
     public void GiveInputAction(Valve.VR.SteamVR_Action_Single squeeze)
     {
         squeezeAction = squeeze;

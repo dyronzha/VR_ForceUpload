@@ -42,14 +42,14 @@ public class GameManager : MonoBehaviour
         control = GameObject.Find("RoboArm").transform;
         RoboArmControl roboArmControl = new RoboArmControl(control, control.Find("Pos"));
         roboArmControl.Init();
-        roboArmControl.SetCameraHands(player.HUDCamera, player.rightHand, player.leftHand);
+        roboArmControl.SetCameraHands(player.HUDCamera, player.leftHand, player.rightHand);
         roboArmControl.GiveInputAction(player.SqueezeAction);
         multiControlsDic.Add(control.name, roboArmControl);
 
         control = GameObject.Find("Drone").transform;
         DroneControl droneControl = new DroneControl(control, control.Find("Pos"));
         droneControl.Init();
-        droneControl.SetCameraHands(player.HUDCamera, player.rightHand, player.leftHand);
+        droneControl.SetCameraHands(player.HUDCamera, player.leftHand, player.rightHand);
         droneControl.GiveInputAction(player.SqueezeAction);
         multiControlsDic.Add(control.name, droneControl);
     }

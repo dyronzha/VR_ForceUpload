@@ -145,7 +145,7 @@ public class PlayerControl : MonoBehaviour
 
                     goTrans = true;
                     SteamVR_Fade.Start(Color.clear, 0);
-                    SteamVR_Fade.Start(Color.black, 0.8f);
+                    SteamVR_Fade.Start(Color.black, 2.0f);
                     if (roboMod)
                     {
                         //HUDCamera.GetComponent<Camera>().enabled = false;
@@ -162,6 +162,8 @@ public class PlayerControl : MonoBehaviour
                         //UnityEngine.XR.InputTracking.disablePositionalTracking = false;
                         transMask = otherControlMask;
                         playerRobot.gameObject.SetActive(false);
+                        if (transform.parent != null) transform.parent = null;
+
                     }
                     
                 }
