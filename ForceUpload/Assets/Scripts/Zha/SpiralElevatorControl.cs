@@ -83,7 +83,7 @@ public class SpiralElevatorControl : MultiContolBase
 
                 degree = Vector2.Angle(lastVector, curVector);
                 cross = lastVector.x * curVector.y - lastVector.y * curVector.x;
-                Debug.Log(degree + "   " + cross);
+                //Debug.Log(degree + "   " + cross);
                 if (Mathf.Abs(cross) > 0.1f) cross = -Mathf.Sign(cross);
                 else cross = .0f;
  

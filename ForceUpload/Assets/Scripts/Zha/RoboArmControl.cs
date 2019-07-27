@@ -59,14 +59,16 @@ public class RoboArmControl : MultiContolBase
                 1 << LayerMask.NameToLayer("GribObject"));
             if (hits.Length > 0) {
                 grabObject = hits[0].transform;
-                grabObject.parent = hand;
+                grabObject.parent.parent = hand;
+                grib = true;
             }
             Debug.Log(hits.Length);
         }
         else if (squeezeAction.GetAxis(Valve.VR.SteamVR_Input_Sources.RightHand) < 0.1f && grib){
             grib = false;
-            grabObject.parent = null;
-        }
 
+            grabObject.parent.parent = null;
+
+        }
     }
 }
