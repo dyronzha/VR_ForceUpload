@@ -13,7 +13,12 @@ public class Player_Move : MonoBehaviour{
     bool AutoMoving = false;
     bool PlayerManualing = false;
 
+    //推箱子用
+    Ray ray_Dir;
+    RaycastHit hit_Dir;
+
     void Start(){
+        ray_Dir = new Ray(transform.position, transform.position);
         //Ini_Start = transform.position;
         //FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
     }
@@ -28,8 +33,6 @@ public class Player_Move : MonoBehaviour{
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
                 NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
                 if (NextPosisWalkable == 1 || NextPosisWalkable ==3){
-                    _tilemap.SetTileOccupy(Ini_Start.x, Ini_Start.z, false);
-                    _tilemap.SetTileOccupy(Ini_End.x, Ini_End.z, true);
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
                 }
@@ -41,8 +44,6 @@ public class Player_Move : MonoBehaviour{
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
                 NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
                 if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
-                    _tilemap.SetTileOccupy(Ini_Start.x, Ini_Start.z, false);
-                    _tilemap.SetTileOccupy(Ini_End.x, Ini_End.z, true);
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
                 }
@@ -54,8 +55,6 @@ public class Player_Move : MonoBehaviour{
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
                 NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
                 if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
-                    _tilemap.SetTileOccupy(Ini_Start.x, Ini_Start.z, false);
-                    _tilemap.SetTileOccupy(Ini_End.x, Ini_End.z, true);
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
                 }
@@ -67,10 +66,42 @@ public class Player_Move : MonoBehaviour{
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
                 NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
                 if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
-                    _tilemap.SetTileOccupy(Ini_Start.x, Ini_Start.z, false);
-                    _tilemap.SetTileOccupy(Ini_End.x, Ini_End.z, true);
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.W)){
+                ray_Dir = new Ray(transform.position, new Vector3(0.0f, 0.0f, 0.6f));
+                Debug.DrawRay(transform.position, new Vector3(0.0f, 0.0f, 0.6f));
+                if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
+                    if (hit_Dir.transform.tag == "Stage3_Box") hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.A)){
+                ray_Dir = new Ray(transform.position, new Vector3(-0.6f, 0.0f, 0.0f));
+                Debug.DrawRay(transform.position, new Vector3(-0.6f, 0.0f, 0.0f));
+                if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
+                    if (hit_Dir.transform.tag == "Stage3_Box"){
+                        hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
+                    }
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.S)){
+                ray_Dir = new Ray(transform.position, new Vector3(0.0f,0.0f, -0.6f));
+                Debug.DrawRay(transform.position, new Vector3( 0.0f, 0.0f,-0.6f));
+                if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
+                    if (hit_Dir.transform.tag == "Stage3_Box") hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.D)){
+                ray_Dir = new Ray(transform.position, new Vector3(0.6f, 0.0f,0.0f));
+                Debug.DrawRay(transform.position, new Vector3(0.6f, 0.0f, 0.0f));
+                if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
+                    if (hit_Dir.transform.tag == "Stage3_Box") hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
                 }
             }
 

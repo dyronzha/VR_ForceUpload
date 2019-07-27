@@ -16,7 +16,7 @@ public class TileMap : MonoBehaviour{
 
     public TileInfo[,] TileState;
 
-    void Start(){
+    void Awake(){
         TileState = new TileInfo[mapSizeX, mapSizeZ];
         GenerateMapData();
         GenerateMapVisual();

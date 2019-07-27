@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile_Road
+  - Stage3_Box
   layers:
   - Default
   - TransparentFX
