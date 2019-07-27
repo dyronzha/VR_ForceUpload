@@ -24,6 +24,23 @@ ModelImporter:
     100036: transform15
     100038: transform16
     100040: transform9
+    100042: base
+    100044: grab
+    100046: head
+    100048: joint1
+    100050: joint10
+    100052: joint11
+    100054: joint12
+    100056: joint2
+    100058: joint3
+    100060: joint4
+    100062: joint5
+    100064: joint6
+    100066: joint7
+    100068: joint8
+    100070: joint9
+    100072: neck
+    100074: ring
     400000: //RootNode
     400002: pCube31
     400004: pCube32
@@ -45,7 +62,26 @@ ModelImporter:
     400036: transform15
     400038: transform16
     400040: transform9
+    400042: base
+    400044: grab
+    400046: head
+    400048: joint1
+    400050: joint10
+    400052: joint11
+    400054: joint12
+    400056: joint2
+    400058: joint3
+    400060: joint4
+    400062: joint5
+    400064: joint6
+    400066: joint7
+    400068: joint8
+    400070: joint9
+    400072: neck
+    400074: ring
     2100000: lambert1
+    2100002: lambert2
+    2100004: lambert3
     2300000: pCube31
     2300002: pCube32
     2300004: pCylinder29
@@ -58,6 +94,9 @@ ModelImporter:
     2300018: pSphere2
     2300020: pSphere3
     2300022: pTorus1
+    2300024: base
+    2300026: grab
+    2300028: neck
     3300000: pCube31
     3300002: pCube32
     3300004: pCylinder29
@@ -70,6 +109,9 @@ ModelImporter:
     3300018: pSphere2
     3300020: pSphere3
     3300022: pTorus1
+    3300024: base
+    3300026: grab
+    3300028: neck
     4300000: pCube31
     4300002: pCube32
     4300004: pCylinder31
@@ -82,6 +124,9 @@ ModelImporter:
     4300018: pSphere2
     4300020: pSphere1
     4300022: pTorus1
+    4300024: grab
+    4300026: neck
+    4300028: base
   externalObjects: {}
   materials:
     importMaterials: 1
