@@ -15,21 +15,21 @@ public class Box_Move : MonoBehaviour{
     bool Goal = false;
 
     void Start(){
-        _tilemap.SetTileOccupy(transform.position.x, transform.position.z, true);
+        _tilemap.SetTileOccupy(transform.localPosition.x, transform.localPosition.z, true);
         FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
         speed = 0;
     }
 
     void Update(){
         if (speed != 0) {
-            transform.position = Vector3.Lerp(transform.position, Ini_End, speed * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, Ini_End, speed * Time.deltaTime);
             speed = CalculateNewSpeed();
         }
-        if (transform.position.x == GoalPos.x && transform.position.z == GoalPos.z) Goal = true;
+        if (transform.localPosition.x == GoalPos.x && transform.localPosition.z == GoalPos.z) Goal = true;
     }
 
     float CalculateNewSpeed(){
-        float tmp_dis = Vector3.Distance(transform.position, Ini_End);
+        float tmp_dis = Vector3.Distance(transform.localPosition, Ini_End);
 
         if (tmp_dis == 0){
             return tmp_dis;
@@ -40,27 +40,28 @@ public class Box_Move : MonoBehaviour{
     public void PushByPlayer(float HUDPosX,float HUDPosZ) {
         if (Goal == false) {
             //決定方向
-            if (transform.position.x > HUDPosX) Push_Dir = 3;
-            else if (transform.position.x < HUDPosX) Push_Dir = 9;
-            else if (transform.position.z > HUDPosX) Push_Dir = 12;
-            else if (transform.position.z < HUDPosX) Push_Dir = 6;
-
+            if (transform.localPosition.x > HUDPosX) Push_Dir = 3;
+            else if (transform.localPosition.x < HUDPosX) Push_Dir = 9;
+            else if (transform.localPosition.z > HUDPosX) Push_Dir = 12;
+            else if (transform.localPosition.z < HUDPosX) Push_Dir = 6;
             //根據方向進行移動
-            Ini_Start = transform.position;
+            Ini_Start = transform.localPosition;
             switch (Push_Dir){
                 case 3:
-                    Ini_End = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                    Ini_End = new Vector3(transform.localPosition.x + 1, transform.localPosition.y, transform.localPosition.z);
                     break;
                 case 6:
-                    Ini_End = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+                    Ini_End = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - 1);
                     break;
                 case 9:
-                    Ini_End = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
+                    Ini_End = new Vector3(transform.localPosition.x - 1, transform.localPosition.y, transform.localPosition.z);
+
                     break;
                 case 12:
-                    Ini_End = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+                    Ini_End = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 1);
                     break;
             }
+
             NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
             if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
                 _tilemap.SetTileOccupy(Ini_Start.x, Ini_Start.z, false);

@@ -15,6 +15,7 @@ public class TileMap : MonoBehaviour{
     int mapSizeZ = 7;
 
     public TileInfo[,] TileState;
+    public Transform Pivot;
 
     void Awake(){
         TileState = new TileInfo[mapSizeX, mapSizeZ];
@@ -59,11 +60,12 @@ public class TileMap : MonoBehaviour{
         for (int x = 0; x < mapSizeX; x++) {
             for (int z = 0; z < mapSizeZ; z++){
                 TileType tt = _tiletypes[tiles[x, z]];
-                GameObject ChessboardRoad = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(x, 0.0f, z), Quaternion.identity);
+                GameObject ChessboardRoad = (GameObject)Instantiate(tt.tileVisualPrefab, new Vector3(5.75f+x, 9.7f, -7.3f+z), Quaternion.identity);
                 TileState[x, z] = ChessboardRoad.GetComponent<TileInfo>();
                 ChessboardRoad.transform.SetParent(transform);
             }
         }
+        Pivot.eulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
     }
 
     public int CheckTileWalkable(float posX,float posZ) {
