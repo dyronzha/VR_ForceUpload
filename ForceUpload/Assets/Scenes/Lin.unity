@@ -27956,7 +27956,7 @@ GameObject:
   - component: {fileID: 1611934195}
   - component: {fileID: 1611934194}
   - component: {fileID: 1611934198}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Box_B
   m_TagString: Stage3_Box
   m_Icon: {fileID: 0}
@@ -30670,7 +30670,7 @@ GameObject:
   - component: {fileID: 1764614634}
   - component: {fileID: 1764614633}
   - component: {fileID: 1764614637}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Box_A
   m_TagString: Stage3_Box
   m_Icon: {fileID: 0}
@@ -31510,7 +31510,7 @@ GameObject:
   - component: {fileID: 1812279639}
   - component: {fileID: 1812279638}
   - component: {fileID: 1812279642}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Box_C
   m_TagString: Stage3_Box
   m_Icon: {fileID: 0}
@@ -32097,7 +32097,7 @@ GameObject:
   - component: {fileID: 1859235175}
   - component: {fileID: 1859235174}
   - component: {fileID: 1859235178}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Box_D
   m_TagString: Stage3_Box
   m_Icon: {fileID: 0}
