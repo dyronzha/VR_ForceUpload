@@ -21,23 +21,37 @@ public class GameManager : MonoBehaviour
         instance = this;
         player = GameObject.Find("[CameraRig]").GetComponent<PlayerControl>();
 
-        Transform control = GameObject.Find("SpiralElevator").transform;
-        SpiralElevatorControl spiralElevatorControl = new SpiralElevatorControl(control, control.Find("Pos"));
-        spiralElevatorControl.SetHands(player.rightHand,player.leftHand);
-        multiControlsDic.Add(control.name, spiralElevatorControl);
-
-        control = GameObject.Find("RoboArm").transform;
-        RoboArmControl roboArmControl = new RoboArmControl(control, control.Find("Pos"));
-        multiControlsDic.Add(control.name, roboArmControl);
-
-        control = GameObject.Find("Drone").transform;
-        DroneControl droneControl = new DroneControl(control, control.Find("Pos"));
-        multiControlsDic.Add(control.name, droneControl);
+       
 
     }
     void Start()
     {
-        
+        Transform control = GameObject.Find("PlayerRobot").transform;
+        MultiContolBase playerRobot = new MultiContolBase(control, control.Find("Pos"));
+        player.SetTargetControl(control, playerRobot);
+        playerRobot.Init();
+        playerRobot.SetCameraHands(player.HUDCamera, player.rightHand, player.leftHand);
+        multiControlsDic.Add(control.name, playerRobot);
+
+        control = GameObject.Find("SpiralElevator").transform;
+        SpiralElevatorControl spiralElevatorControl = new SpiralElevatorControl(control, control.Find("Pos"));
+        spiralElevatorControl.Init();
+        spiralElevatorControl.SetCameraHands(player.HUDCamera, player.rightHand, player.leftHand);
+        multiControlsDic.Add(control.name, spiralElevatorControl);
+
+        control = GameObject.Find("RoboArm").transform;
+        RoboArmControl roboArmControl = new RoboArmControl(control, control.Find("Pos"));
+        roboArmControl.Init();
+        roboArmControl.SetCameraHands(player.HUDCamera, player.rightHand, player.leftHand);
+        roboArmControl.GiveInputAction(player.SqueezeAction);
+        multiControlsDic.Add(control.name, roboArmControl);
+
+        control = GameObject.Find("Drone").transform;
+        DroneControl droneControl = new DroneControl(control, control.Find("Pos"));
+        droneControl.Init();
+        droneControl.SetCameraHands(player.HUDCamera, player.rightHand, player.leftHand);
+        droneControl.GiveInputAction(player.SqueezeAction);
+        multiControlsDic.Add(control.name, droneControl);
     }
 
     // Update is called once per frame
@@ -49,7 +63,6 @@ public class GameManager : MonoBehaviour
     public MultiContolBase LookUpMultiControl(string name) {
         if (multiControlsDic.ContainsKey(name))
         {
-            Debug.Log(multiControlsDic[name]);
             return multiControlsDic[name];
         }
         else {

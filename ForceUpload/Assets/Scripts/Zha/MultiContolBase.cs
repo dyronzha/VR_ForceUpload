@@ -4,32 +4,37 @@ using UnityEngine;
 
 public class MultiContolBase 
 {
-    public Transform tranform;
+    public Transform transform;
     public Transform whereLook;
 
-    protected Transform leftHand, rightHand;
+    protected Transform HUDCamera, leftHand, rightHand;
 
 
 
 
     public MultiContolBase(Transform t, Transform look) {
-        tranform = t;
+        transform = t;
         whereLook = look;
     }
-    public void SetHands(Transform left, Transform right) {
+    
+    public void SetCameraHands(Transform head, Transform left, Transform right) {
+        HUDCamera = head;
         leftHand = left;
         rightHand = right;
     }
 
     // Start is called before the first frame update
-    public virtual void Init(Transform t, Transform pos)
+    public virtual void Init()
     {
-
+        transform.gameObject.SetActive(false);
+    }
+    public virtual void Awake() {
     }
 
     // Update is called once per frame
     public virtual void Update(float dt)
     {
-        
+        transform.localPosition = new Vector3(HUDCamera.localPosition.x, transform.localPosition.y, HUDCamera.localPosition.z);
+        transform.rotation = Quaternion.LookRotation(new Vector3(HUDCamera.forward.x,0, HUDCamera.forward.z), Vector3.up);
     }
 }
