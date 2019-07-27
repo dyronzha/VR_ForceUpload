@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 514202044}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: HUDPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ini_Start: {x: 2, y: 1, z: 0}
   Ini_End: {x: 2, y: 1, z: 5}
+  RouteType: 2
 --- !u!136 &1001569950
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -517,6 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ini_Start: {x: 1, y: 1, z: 6}
   Ini_End: {x: 4, y: 1, z: 6}
+  RouteType: 1
 --- !u!1 &1387987437
 GameObject:
   m_ObjectHideFlags: 0

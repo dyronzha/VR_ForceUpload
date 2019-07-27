@@ -19,13 +19,10 @@ public class Player_Move : MonoBehaviour{
 
     void Start(){
         ray_Dir = new Ray(transform.position, transform.position);
-        //Ini_Start = transform.position;
-        //FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
     }
 
 
     void Update(){
-        //Debug.Log("CurrentSpeed = " + speed);
         if (AutoMoving == false) {
             if (Input.GetKeyDown(KeyCode.J)){
                 Ini_Start = transform.position;
@@ -75,7 +72,11 @@ public class Player_Move : MonoBehaviour{
                 ray_Dir = new Ray(transform.position, new Vector3(0.0f, 0.0f, 0.6f));
                 Debug.DrawRay(transform.position, new Vector3(0.0f, 0.0f, 0.6f));
                 if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
-                    if (hit_Dir.transform.tag == "Stage3_Box") hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
+                    if (hit_Dir.transform.tag == "Stage3_Box") {
+                        Debug.Log("press w");
+                        hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
+                    }
+
                 }
             }
 

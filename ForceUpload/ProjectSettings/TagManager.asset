@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tile_Road
   - Stage3_Box
+  - HUDPlayer
   layers:
   - Default
   - TransparentFX

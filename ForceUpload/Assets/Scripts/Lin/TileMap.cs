@@ -22,10 +22,6 @@ public class TileMap : MonoBehaviour{
         GenerateMapVisual();
     }
 
-    void Update(){
-        
-    }
-
     void GenerateMapData() {
         //確認地圖規模
         tiles = new int[mapSizeX, mapSizeZ];
