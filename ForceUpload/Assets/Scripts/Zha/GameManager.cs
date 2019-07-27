@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Transform control = GameObject.Find("PlayerRobot").transform;
-        MultiContolBase playerRobot = new MultiContolBase(control, control.Find("Pos"));
+        MultiContolBase playerRobot = new MultiContolBase(player.transform, control.Find("Pos"));
         player.SetTargetControl(control, playerRobot);
         playerRobot.Init();
         playerRobot.SetCameraHands(player.HUDCamera, player.rightHand, player.leftHand);
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         control = GameObject.Find("SpiralElevator").transform;
         SpiralElevatorControl spiralElevatorControl = new SpiralElevatorControl(control, control.Find("Pos"));
         spiralElevatorControl.Init();
-        spiralElevatorControl.SetCameraHands(player.HUDCamera, player.rightHand, player.leftHand);
+        spiralElevatorControl.SetCameraHands(player.HUDCamera, player.leftHand, player.rightHand);
         multiControlsDic.Add(control.name, spiralElevatorControl);
 
         control = GameObject.Find("RoboArm").transform;

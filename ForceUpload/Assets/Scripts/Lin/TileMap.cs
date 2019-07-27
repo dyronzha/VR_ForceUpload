@@ -69,8 +69,10 @@ public class TileMap : MonoBehaviour{
     }
 
     public int CheckTileWalkable(float posX,float posZ) {
+
         int x = (int)posX;
         int z = (int)posZ;
+
         if (x > 6 || z > 6) return 2;
         else if (tiles[x, z] == 3) return 3;
         else if (TileState[x, z].On_Occupy == false && _tiletypes[tiles[x, z]].isWalkable == true) return 1;

@@ -20,10 +20,10 @@ TagManager:
   - TransControl
   - OringinControl
   - GribObject
-  - 
-  - 
-  - 
-  - 
+  - Box
+  - Ground
+  - DeadArea
+  - MoveBoard
   - 
   - 
   - 
