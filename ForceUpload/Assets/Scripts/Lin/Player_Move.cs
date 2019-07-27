@@ -25,10 +25,12 @@ public class Player_Move : MonoBehaviour{
     void Update(){
         if (AutoMoving == false) {
             if (Input.GetKeyDown(KeyCode.J)){
-                Ini_Start = transform.localPosition;
-                Ini_End = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - 1);
+                Ini_Start = transform.position;
+                Ini_End = new Vector3(transform.position.x-1, transform.position.y, transform.position.z );
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
-                NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
+                NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_Start.x - 3.75f, Ini_Start.z + 9.3f+1);
+                //Debug.Log("x=" + (Ini_Start.x - 3.75f));
+                //Debug.Log("Z=" + (Ini_Start.z + 10.3f));
                 if (NextPosisWalkable == 1 || NextPosisWalkable ==3){
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
@@ -36,10 +38,11 @@ public class Player_Move : MonoBehaviour{
             }
 
             if (Input.GetKeyDown(KeyCode.H)){
-                Ini_Start = transform.localPosition;
-                Ini_End = new Vector3(transform.localPosition.x - 1, transform.localPosition.y, transform.localPosition.z);
+                Ini_Start = transform.position;
+                Ini_End = new Vector3(transform.position.x, transform.position.y, transform.position.z+1 );
+                Debug.Log(Ini_Start);//這行於PlayerPos正確
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
-                NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
+                NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_Start.x - 3.75f-1, Ini_Start.z + 11.3f);
                 if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
@@ -47,10 +50,12 @@ public class Player_Move : MonoBehaviour{
             }
 
             if (Input.GetKeyDown(KeyCode.U)){
-                Ini_Start = transform.localPosition;
-                Ini_End = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 1);
+                Ini_Start = transform.position;
+                Ini_End = new Vector3(transform.position.x+1, transform.position.y, transform.position.z);
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
-                NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
+                NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_Start.x - 3.75f, Ini_Start.z + 11.3f+1);
+                Debug.Log("x=" + (Ini_Start.x - 3.75f));
+                Debug.Log("Z=" + (Ini_Start.z + 12.3f));
                 if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
@@ -58,10 +63,10 @@ public class Player_Move : MonoBehaviour{
             }
 
             if (Input.GetKeyDown(KeyCode.K)){
-                Ini_Start = transform.localPosition;
-                Ini_End = new Vector3(transform.localPosition.x + 1, transform.localPosition.y, transform.localPosition.z);
+                Ini_Start = transform.position;
+                Ini_End = new Vector3(transform.position.x , transform.position.y, transform.position.z-1);
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
-                NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x, Ini_End.z);
+                NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_End.x - 1.75f+1, Ini_End.z + 10.3f);
                 if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
@@ -73,7 +78,8 @@ public class Player_Move : MonoBehaviour{
                 Debug.DrawRay(transform.position, new Vector3(0.0f, 0.0f, 0.6f));
                 if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
                     if (hit_Dir.transform.tag == "Stage3_Box") {
-                        hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.localPosition.x, transform.localPosition.z);
+                        //hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.localPosition.x, transform.localPosition.z);
+                        hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
                     }
 
                 }
@@ -84,7 +90,8 @@ public class Player_Move : MonoBehaviour{
                 Debug.DrawRay(transform.position, new Vector3(-0.6f, 0.0f, 0.0f));
                 if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
                     if (hit_Dir.transform.tag == "Stage3_Box"){
-                        hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.localPosition.x, transform.localPosition.z);
+                        //hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.localPosition.x, transform.localPosition.z);
+                        hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x ,transform.position.z);
                     }
                 }
             }
@@ -93,7 +100,10 @@ public class Player_Move : MonoBehaviour{
                 ray_Dir = new Ray(transform.position, new Vector3(0.0f,0.0f, -0.6f));
                 Debug.DrawRay(transform.position, new Vector3( 0.0f, 0.0f,-0.6f));
                 if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
-                    if (hit_Dir.transform.tag == "Stage3_Box") hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.localPosition.x, transform.localPosition.z);
+                    if (hit_Dir.transform.tag == "Stage3_Box") {
+                        //hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.localPosition.x, transform.localPosition.z);
+                        hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
+                    }
                 }
             }
 
@@ -101,19 +111,22 @@ public class Player_Move : MonoBehaviour{
                 ray_Dir = new Ray(transform.position, new Vector3(0.6f, 0.0f,0.0f));
                 Debug.DrawRay(transform.position, new Vector3(0.6f, 0.0f, 0.0f));
                 if (Physics.Raycast(ray_Dir, out hit_Dir, 0.6f)){
-                    if (hit_Dir.transform.tag == "Stage3_Box") hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.localPosition.x, transform.localPosition.z);
+                    if (hit_Dir.transform.tag == "Stage3_Box") {
+                        //hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.localPosition.x, transform.localPosition.z);
+                        hit_Dir.transform.gameObject.GetComponent<Box_Move>().PushByPlayer(transform.position.x, transform.position.z);
+                    }
                 }
             }
 
             if (speed != 0 &&PlayerManualing == true){
-                transform.localPosition = Vector3.Lerp(transform.localPosition, Ini_End, speed * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, Ini_End, speed * Time.deltaTime);
                 speed = CalculateNewSpeed();
             }
 
         }
 
         if (AutoMoving == true) {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, Ini_End, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, Ini_End, speed * Time.deltaTime);
             speed = CalculateNewSpeed();
         }
 
@@ -173,7 +186,7 @@ public class Player_Move : MonoBehaviour{
     }
 
     float CalculateNewSpeed(){
-        float tmp_dis = Vector3.Distance(transform.localPosition, Ini_End);
+        float tmp_dis = Vector3.Distance(transform.position, Ini_End);
         if (tmp_dis == 0){
             PlayerManualing = false;
             AutoMoving = false;

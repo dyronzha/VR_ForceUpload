@@ -40,10 +40,21 @@ public class Box_Move : MonoBehaviour{
     public void PushByPlayer(float HUDPosX,float HUDPosZ) {
         if (Goal == false) {
             //決定方向
-            if (transform.localPosition.x > HUDPosX) Push_Dir = 3;
-            else if (transform.localPosition.x < HUDPosX) Push_Dir = 9;
-            else if (transform.localPosition.z > HUDPosX) Push_Dir = 12;
-            else if (transform.localPosition.z < HUDPosX) Push_Dir = 6;
+            //if (transform.localPosition.x > HUDPosX) Push_Dir = 3;
+            //else if (transform.localPosition.x < HUDPosX) Push_Dir = 9;
+            //else if (transform.localPosition.z > HUDPosX) Push_Dir = 12;
+            //else if (transform.localPosition.z < HUDPosX) Push_Dir = 6;
+
+            if (Mathf.Abs(transform.position.x - HUDPosX) < 0.5f){
+                if (transform.position.z > HUDPosZ) Push_Dir = 9;
+                else if (transform.position.z < HUDPosZ) Push_Dir = 3;
+            }
+
+            else if (Mathf.Abs(transform.position.z - HUDPosZ) < 0.5f) {
+                if (transform.position.x > HUDPosX) Push_Dir = 12;
+                else if (transform.position.x < HUDPosX) Push_Dir = 6;
+            }
+
             //根據方向進行移動
             Ini_Start = transform.localPosition;
             switch (Push_Dir){
