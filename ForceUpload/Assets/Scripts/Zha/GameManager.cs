@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Transform control = GameObject.Find("PlayerRobot").transform;
-        MultiContolBase playerRobot = new MultiContolBase(transform, control.Find("Pos"));
+        MultiContolBase playerRobot = new MultiContolBase(player.transform, control.Find("Pos"));
         player.SetTargetControl(control, playerRobot);
         playerRobot.Init();
         playerRobot.SetCameraHands(player.HUDCamera, player.rightHand, player.leftHand);
