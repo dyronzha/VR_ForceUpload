@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
 {
     bool roboMod = true;
     float deltaTime;
+    Transform playerRobot;
 
     [Header("TransMind")]
     public float transDist = 10.0f;
@@ -15,10 +16,11 @@ public class PlayerControl : MonoBehaviour
 
     [Header("OtherControl")]
     public SteamVR_Action_Boolean GribAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("GrabGrip");
+    public SteamVR_Action_Single SqueezeAction = SteamVR_Input.GetAction<SteamVR_Action_Single>("Squeeze");
 
     bool isTransTouchDown = false, goTrans = false;
     float transTime = .0f;
-    Transform HUDCamera, curTransHand, lineReticle;
+    Transform curTransHand, lineReticle;
     LayerMask transMask;
 
     Vector3 cameraOffset;
@@ -27,7 +29,7 @@ public class PlayerControl : MonoBehaviour
 
     SteamVR_Input_Sources transHand;
 
-    public Transform leftHand, rightHand;
+    public Transform HUDCamera, leftHand, rightHand;
     LineRenderer transLineRender;
 
 
@@ -41,32 +43,35 @@ public class PlayerControl : MonoBehaviour
         transLineRender.enabled = false;
         lineReticle = transform.Find("Reticle");
         transMask = otherControlMask;
-
     }
     void Start()
     {
         
     }
 
+    public void SetTargetControl(Transform player, MultiContolBase control) {
+        playerRobot = player;
+        targetControl = control;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)) GameManager.Instance.LookUpMultiControl("SpiralElevator");
+        //Debug.Log(SqueezeAction.GetAxis(SteamVR_Input_Sources.RightHand));
+
         deltaTime = Time.deltaTime; 
         if (!goTrans) TransDetect();
         else GoTrans();
 
-        if (!roboMod) {
-            targetControl.Update(deltaTime);
-        }
+        targetControl.Update(deltaTime);
 
     }
 
     private void LateUpdate()
     {
-        if (!roboMod) {
-            transform.position = Vector3.Lerp(transform.position, transform.position - (HUDCamera.localPosition - cameraOffset), Time.deltaTime*10.0f);
-        }
+        //if (!roboMod) {
+        //    transform.position = (HUDCamera.position - cameraOffset); //Vector3.Lerp(transform.position, transform.position - (HUDCamera.localPosition - cameraOffset), Time.deltaTime*10.0f);
+        //}
     }
 
     void TransDetect() {
@@ -85,6 +90,39 @@ public class PlayerControl : MonoBehaviour
                 isTransTouchDown = true;
                 curTransHand = rightHand;
                 transLineRender.enabled = true;
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.Z)) {
+                goTrans = true;
+                cameraOffset = HUDCamera.localPosition;
+                targetControl = GameManager.Instance.LookUpMultiControl("SpiralElevator");
+                playerRobot.parent = null;
+                playerRobot.gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                goTrans = true;
+                cameraOffset = HUDCamera.localPosition;
+                targetControl = GameManager.Instance.LookUpMultiControl("RoboArm");
+                playerRobot.parent = null;
+                playerRobot.gameObject.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                goTrans = true;
+                cameraOffset = HUDCamera.localPosition;
+                targetControl = GameManager.Instance.LookUpMultiControl("Drone");
+                playerRobot.parent = null;
+                playerRobot.gameObject.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                goTrans = true;
+                cameraOffset = HUDCamera.localPosition;
+                targetControl = GameManager.Instance.LookUpMultiControl("PlayerRobot");
+                playerRobot.gameObject.SetActive(false);
             }
         }
         else {
@@ -107,30 +145,29 @@ public class PlayerControl : MonoBehaviour
 
                     goTrans = true;
                     SteamVR_Fade.Start(Color.clear, 0);
-                    SteamVR_Fade.Start(Color.black, 0.8f);
+                    SteamVR_Fade.Start(Color.black, 2.0f);
                     if (roboMod)
                     {
                         //HUDCamera.GetComponent<Camera>().enabled = false;
                         //UnityEngine.XR.InputTracking.disablePositionalTracking = true;
                         cameraOffset = HUDCamera.localPosition;
                         transMask = oringinMask;
+                        playerRobot.parent = null;
+                        playerRobot.gameObject.SetActive(true);
+
                     }
                     else
                     {
                         //HUDCamera.GetComponent<Camera>().enabled = enabled;
                         //UnityEngine.XR.InputTracking.disablePositionalTracking = false;
                         transMask = otherControlMask;
+                        playerRobot.gameObject.SetActive(false);
+                        if (transform.parent != null) transform.parent = null;
+
                     }
-                    roboMod = !roboMod;
+                    
                 }
-
-
-               
-
             }
-
-
-          
         }
     }
     void GoTrans() {
@@ -138,8 +175,12 @@ public class PlayerControl : MonoBehaviour
         if (transTime > 0.5f) {
             transTime = .0f;
             transform.position = targetControl.whereLook.position - HUDCamera.transform.localPosition;
+            Debug.Log(targetControl.transform.name);
             transform.rotation = targetControl.whereLook.rotation;
             goTrans = false;
+            roboMod = !roboMod;
+            targetControl.Awake();
+            if(roboMod) playerRobot.parent = transform;
         }
     }
 }

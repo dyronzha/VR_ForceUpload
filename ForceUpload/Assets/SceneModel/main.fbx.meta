@@ -1,0 +1,506 @@
+fileFormatVersion: 2
+guid: 42eacb024564d9d48accba839234197f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: butt
+    100002: chest
+    100004: chestout
+    100006: eyeball
+    100008: eyes
+    100010: group6
+    100012: group6 1
+    100014: head
+    100016: lefthand
+    100018: leftleg
+    100020: light
+    100022: //RootNode
+    100024: mask
+    100026: neck
+    100028: pCone1
+    100030: pCone1 1
+    100032: pCylinder2
+    100034: pCylinder2 1
+    100036: pCylinder3
+    100038: pCylinder3 1
+    100040: polySurface13
+    100042: polySurface14
+    100044: polySurface18
+    100046: polySurface19
+    100048: polySurface22
+    100050: polySurface23
+    100052: polySurface24
+    100054: polySurface24 1
+    100056: polySurface25
+    100058: polySurface25 1
+    100060: polySurface27
+    100062: polySurface27 1
+    100064: pSphere10
+    100066: pSphere10 1
+    100068: pSphere11
+    100070: pSphere11 1
+    100072: pSphere12
+    100074: pSphere12 1
+    100076: pSphere13
+    100078: pSphere13 1
+    100080: pSphere14
+    100082: pSphere14 1
+    100084: pSphere15
+    100086: pSphere15 1
+    100088: pSphere16
+    100090: pSphere16 1
+    100092: pSphere17
+    100094: pSphere17 1
+    100096: pSphere18
+    100098: pSphere18 1
+    100100: pSphere19
+    100102: pSphere19 1
+    100104: pSphere2
+    100106: pSphere2 1
+    100108: pSphere20
+    100110: pSphere20 1
+    100112: pSphere21
+    100114: pSphere21 1
+    100116: pSphere22
+    100118: pSphere22 1
+    100120: pSphere23
+    100122: pSphere23 1
+    100124: pSphere24
+    100126: pSphere24 1
+    100128: pSphere25
+    100130: pSphere25 1
+    100132: pSphere26
+    100134: pSphere29
+    100136: pSphere3
+    100138: pSphere3 1
+    100140: pSphere30
+    100142: pSphere31
+    100144: pSphere4
+    100146: pSphere4 1
+    100148: pSphere5
+    100150: pSphere5 1
+    100152: pSphere6
+    100154: pSphere6 1
+    100156: pSphere7
+    100158: pSphere7 1
+    100160: pSphere9
+    100162: pSphere9 1
+    100164: righthand
+    100166: rightleg
+    100168: transform3
+    100170: transform3 1
+    100172: transform4
+    100174: transform4 1
+    100176: transform5
+    100178: transform6
+    100180: waist
+    400000: butt
+    400002: chest
+    400004: chestout
+    400006: eyeball
+    400008: eyes
+    400010: group6
+    400012: group6 1
+    400014: head
+    400016: lefthand
+    400018: leftleg
+    400020: light
+    400022: //RootNode
+    400024: mask
+    400026: neck
+    400028: pCone1
+    400030: pCone1 1
+    400032: pCylinder2
+    400034: pCylinder2 1
+    400036: pCylinder3
+    400038: pCylinder3 1
+    400040: polySurface13
+    400042: polySurface14
+    400044: polySurface18
+    400046: polySurface19
+    400048: polySurface22
+    400050: polySurface23
+    400052: polySurface24
+    400054: polySurface24 1
+    400056: polySurface25
+    400058: polySurface25 1
+    400060: polySurface27
+    400062: polySurface27 1
+    400064: pSphere10
+    400066: pSphere10 1
+    400068: pSphere11
+    400070: pSphere11 1
+    400072: pSphere12
+    400074: pSphere12 1
+    400076: pSphere13
+    400078: pSphere13 1
+    400080: pSphere14
+    400082: pSphere14 1
+    400084: pSphere15
+    400086: pSphere15 1
+    400088: pSphere16
+    400090: pSphere16 1
+    400092: pSphere17
+    400094: pSphere17 1
+    400096: pSphere18
+    400098: pSphere18 1
+    400100: pSphere19
+    400102: pSphere19 1
+    400104: pSphere2
+    400106: pSphere2 1
+    400108: pSphere20
+    400110: pSphere20 1
+    400112: pSphere21
+    400114: pSphere21 1
+    400116: pSphere22
+    400118: pSphere22 1
+    400120: pSphere23
+    400122: pSphere23 1
+    400124: pSphere24
+    400126: pSphere24 1
+    400128: pSphere25
+    400130: pSphere25 1
+    400132: pSphere26
+    400134: pSphere29
+    400136: pSphere3
+    400138: pSphere3 1
+    400140: pSphere30
+    400142: pSphere31
+    400144: pSphere4
+    400146: pSphere4 1
+    400148: pSphere5
+    400150: pSphere5 1
+    400152: pSphere6
+    400154: pSphere6 1
+    400156: pSphere7
+    400158: pSphere7 1
+    400160: pSphere9
+    400162: pSphere9 1
+    400164: righthand
+    400166: rightleg
+    400168: transform3
+    400170: transform3 1
+    400172: transform4
+    400174: transform4 1
+    400176: transform5
+    400178: transform6
+    400180: waist
+    2100000: lambert1
+    2300000: butt
+    2300002: chest
+    2300004: chestout
+    2300006: eyeball
+    2300008: eyes
+    2300010: head
+    2300012: light
+    2300014: mask
+    2300016: neck
+    2300018: pCone1
+    2300020: pCone1 1
+    2300022: pCylinder2
+    2300024: pCylinder2 1
+    2300026: polySurface18
+    2300028: polySurface19
+    2300030: polySurface22
+    2300032: polySurface23
+    2300034: polySurface24
+    2300036: polySurface24 1
+    2300038: polySurface25
+    2300040: polySurface25 1
+    2300042: polySurface27
+    2300044: polySurface27 1
+    2300046: pSphere10
+    2300048: pSphere10 1
+    2300050: pSphere11
+    2300052: pSphere11 1
+    2300054: pSphere12
+    2300056: pSphere12 1
+    2300058: pSphere13
+    2300060: pSphere13 1
+    2300062: pSphere14
+    2300064: pSphere14 1
+    2300066: pSphere15
+    2300068: pSphere15 1
+    2300070: pSphere16
+    2300072: pSphere16 1
+    2300074: pSphere17
+    2300076: pSphere17 1
+    2300078: pSphere18
+    2300080: pSphere18 1
+    2300082: pSphere19
+    2300084: pSphere19 1
+    2300086: pSphere2
+    2300088: pSphere2 1
+    2300090: pSphere20
+    2300092: pSphere20 1
+    2300094: pSphere21
+    2300096: pSphere21 1
+    2300098: pSphere22
+    2300100: pSphere22 1
+    2300102: pSphere23
+    2300104: pSphere23 1
+    2300106: pSphere24
+    2300108: pSphere24 1
+    2300110: pSphere25
+    2300112: pSphere25 1
+    2300114: pSphere26
+    2300116: pSphere29
+    2300118: pSphere3
+    2300120: pSphere3 1
+    2300122: pSphere30
+    2300124: pSphere31
+    2300126: pSphere4
+    2300128: pSphere4 1
+    2300130: pSphere5
+    2300132: pSphere5 1
+    2300134: pSphere6
+    2300136: pSphere6 1
+    2300138: pSphere7
+    2300140: pSphere7 1
+    2300142: pSphere9
+    2300144: pSphere9 1
+    2300146: waist
+    3300000: butt
+    3300002: chest
+    3300004: chestout
+    3300006: eyeball
+    3300008: eyes
+    3300010: head
+    3300012: light
+    3300014: mask
+    3300016: neck
+    3300018: pCone1
+    3300020: pCone1 1
+    3300022: pCylinder2
+    3300024: pCylinder2 1
+    3300026: polySurface18
+    3300028: polySurface19
+    3300030: polySurface22
+    3300032: polySurface23
+    3300034: polySurface24
+    3300036: polySurface24 1
+    3300038: polySurface25
+    3300040: polySurface25 1
+    3300042: polySurface27
+    3300044: polySurface27 1
+    3300046: pSphere10
+    3300048: pSphere10 1
+    3300050: pSphere11
+    3300052: pSphere11 1
+    3300054: pSphere12
+    3300056: pSphere12 1
+    3300058: pSphere13
+    3300060: pSphere13 1
+    3300062: pSphere14
+    3300064: pSphere14 1
+    3300066: pSphere15
+    3300068: pSphere15 1
+    3300070: pSphere16
+    3300072: pSphere16 1
+    3300074: pSphere17
+    3300076: pSphere17 1
+    3300078: pSphere18
+    3300080: pSphere18 1
+    3300082: pSphere19
+    3300084: pSphere19 1
+    3300086: pSphere2
+    3300088: pSphere2 1
+    3300090: pSphere20
+    3300092: pSphere20 1
+    3300094: pSphere21
+    3300096: pSphere21 1
+    3300098: pSphere22
+    3300100: pSphere22 1
+    3300102: pSphere23
+    3300104: pSphere23 1
+    3300106: pSphere24
+    3300108: pSphere24 1
+    3300110: pSphere25
+    3300112: pSphere25 1
+    3300114: pSphere26
+    3300116: pSphere29
+    3300118: pSphere3
+    3300120: pSphere3 1
+    3300122: pSphere30
+    3300124: pSphere31
+    3300126: pSphere4
+    3300128: pSphere4 1
+    3300130: pSphere5
+    3300132: pSphere5 1
+    3300134: pSphere6
+    3300136: pSphere6 1
+    3300138: pSphere7
+    3300140: pSphere7 1
+    3300142: pSphere9
+    3300144: pSphere9 1
+    3300146: waist
+    4300000: pSphere6
+    4300002: pSphere5
+    4300004: pSphere9
+    4300006: pSphere7
+    4300008: pSphere4
+    4300010: pSphere13
+    4300012: pSphere14
+    4300014: pSphere15
+    4300016: pSphere16
+    4300018: pSphere17
+    4300020: pSphere11
+    4300022: pSphere10
+    4300024: pSphere18
+    4300026: pSphere12
+    4300028: pSphere19
+    4300030: pSphere20
+    4300032: pSphere21
+    4300034: pSphere22
+    4300036: pSphere23
+    4300038: pSphere24
+    4300040: pSphere25
+    4300042: pCone1
+    4300044: pCylinder2
+    4300046: pSphere2
+    4300048: pSphere3
+    4300050: polySurface24
+    4300052: polySurface25
+    4300054: polySurface27
+    4300056: pSphere30
+    4300058: pSphere31
+    4300060: polySurface22
+    4300062: polySurface23
+    4300064: pSphere6
+    4300066: pSphere5
+    4300068: pSphere9
+    4300070: pSphere7
+    4300072: pSphere4
+    4300074: pSphere13
+    4300076: pSphere14
+    4300078: pSphere15
+    4300080: pSphere16
+    4300082: pSphere17
+    4300084: pSphere11
+    4300086: pSphere10
+    4300088: pSphere18
+    4300090: pSphere12
+    4300092: pSphere19
+    4300094: pSphere20
+    4300096: pSphere21
+    4300098: pSphere22
+    4300100: pSphere23
+    4300102: pSphere24
+    4300104: pSphere25
+    4300106: pCone1
+    4300108: pCylinder2
+    4300110: pSphere2
+    4300112: pSphere3
+    4300114: polySurface24
+    4300116: polySurface25
+    4300118: polySurface27
+    4300120: pSphere26
+    4300122: polySurface18
+    4300124: polySurface19
+    4300126: pSphere29
+    4300128: eyes
+    4300130: eyeball
+    4300132: neck
+    4300134: mask
+    4300136: head
+    4300138: waist
+    4300140: butt
+    4300142: light
+    4300144: chest
+    4300146: chestout
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 3b69ad89eb4d9f046bd357b295f2da88, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: main
+    second: {fileID: 2800000, guid: 98cd17b4e1734724c88274893ad9dc69, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
