@@ -29,8 +29,6 @@ public class Player_Move : MonoBehaviour{
                 Ini_End = new Vector3(transform.position.x-1, transform.position.y, transform.position.z );
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
                 NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_Start.x - 3.75f, Ini_Start.z + 9.3f+1);
-                //Debug.Log("x=" + (Ini_Start.x - 3.75f));
-                //Debug.Log("Z=" + (Ini_Start.z + 10.3f));
                 if (NextPosisWalkable == 1 || NextPosisWalkable ==3){
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
@@ -40,9 +38,10 @@ public class Player_Move : MonoBehaviour{
             if (Input.GetKeyDown(KeyCode.H)){
                 Ini_Start = transform.position;
                 Ini_End = new Vector3(transform.position.x, transform.position.y, transform.position.z+1 );
-                Debug.Log(Ini_Start);//這行於PlayerPos正確
                 FirstSpeed = Vector3.Distance(Ini_Start, Ini_End) * speed;
-                NextPosisWalkable = _tilemap.CheckTileWalkable(Ini_Start.x - 3.75f-1, Ini_Start.z + 11.3f);
+                NextPosisWalkable = _tilemap.CheckTileWalkable(-1.3f - Ini_End.z, Ini_End.x - 5.75f);
+                Debug.Log(Ini_End.x - 5.75f);
+                Debug.Log(-1.3f - Ini_End.z);
                 if (NextPosisWalkable == 1 || NextPosisWalkable == 3){
                     speed = CalculateNewSpeed();
                     PlayerManualing = true;
@@ -133,48 +132,51 @@ public class Player_Move : MonoBehaviour{
     }
 
     public void ForceConvey(float PosX,float PosZ,int Dir) {
-        Ini_Start = transform.localPosition;
+        Ini_Start = transform.position;
         int CheckTimes = 0;
         int unit = 1;
         NextPosisWalkable = 1;
         switch (Dir) {
             case 3:
-                Ini_End = new Vector3(6.0f, transform.localPosition.y, transform.localPosition.z);
-                CheckTimes = Mathf.Abs(6 - (int)transform.localPosition.x);
+                Ini_End = new Vector3(transform.position.x, transform.position.y, -7.3f);
+                CheckTimes = (int)Mathf.Abs(-7.3f - transform.position.z);
                 for (int i = 0; i < CheckTimes && NextPosisWalkable == 1; i++){
-                    NextPosisWalkable = _tilemap.CheckTileWalkable(PosX + 1.0f + i, PosZ);
-                    if (NextPosisWalkable == 2)Ini_End = new Vector3(PosX + i, transform.localPosition.y, PosZ);
-                    else if (NextPosisWalkable == 3) Ini_End = new Vector3(PosX +1.0f + i, transform.localPosition.y, PosZ);
+                    NextPosisWalkable = _tilemap.CheckTileWalkable(PosX - 6.75f, -1.3f - PosZ + i);
+                    if (NextPosisWalkable == 2)Ini_End = new Vector3(PosX, transform.position.y, PosZ+i);
+                    else if (NextPosisWalkable == 3) Ini_End = new Vector3(PosX, transform.position.y, PosZ+i);
                     unit = 1 + i;
                 }
                 break;
             case 6:
-                Ini_End = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.0f);
-                CheckTimes = Mathf.Abs(0 - (int)transform.localPosition.z);
+                Ini_End = new Vector3(5.75f, transform.position.y, transform.position.z);
+                //CheckTimes = (int)Mathf.Abs(5.75f - transform.position.x);
+                CheckTimes = (int)Mathf.Abs(5.75f - PosX);
+
                 for (int i = 0; i < CheckTimes && NextPosisWalkable == 1; i++){
-                    NextPosisWalkable = _tilemap.CheckTileWalkable(PosX, PosZ - 1.0f - i);
-                    if (NextPosisWalkable == 2) Ini_End = new Vector3(PosX, transform.localPosition.y, PosZ  - i );
-                    else if (NextPosisWalkable == 3) Ini_End = new Vector3(PosX, transform.localPosition.y, PosZ - 1.0f - i);
+                    NextPosisWalkable = _tilemap.CheckTileWalkable(PosX-6.75f-i, -1.3f - PosZ);
+                    if (NextPosisWalkable == 2) Ini_End = new Vector3(PosX-i, transform.position.y, PosZ);
+                    else if (NextPosisWalkable == 3) Ini_End = new Vector3(PosX - 1.0f - i, transform.position.y, PosZ);
                     unit = 1 + i;
                 }
                 break;
             case 9:
-                Ini_End = new Vector3(0.0f, transform.localPosition.y, transform.localPosition.z);
-                CheckTimes = Mathf.Abs(0 - (int)transform.localPosition.x);
+                Ini_End = new Vector3(transform.position.x, transform.position.y, -1.3f);
+                CheckTimes = (int)Mathf.Abs(-1.3f - transform.position.z);
                 for (int i = 0; i < CheckTimes && NextPosisWalkable == 1; i++){
                     NextPosisWalkable = _tilemap.CheckTileWalkable(PosX - 1.0f - i, PosZ);
-                    if (NextPosisWalkable == 2) Ini_End = new Vector3(PosX - i, transform.localPosition.y, PosZ);
-                    else if (NextPosisWalkable == 3) Ini_End = new Vector3(PosX - 1.0f - i, transform.localPosition.y, PosZ);
+                    if (NextPosisWalkable == 2) Ini_End = new Vector3(PosX - i, transform.position.y, PosZ);
+                    else if (NextPosisWalkable == 3) Ini_End = new Vector3(PosX - 1.0f - i, transform.position.y, PosZ);
                     unit = 1 + i;
                 }
                 break;
             case 12:
-                Ini_End = new Vector3(transform.localPosition.x, transform.localPosition.y, 6.0f);
-                CheckTimes = Mathf.Abs(6 - (int)transform.localPosition.z);
-                for (int i = 0; i < CheckTimes && NextPosisWalkable == 1; i++){
-                    NextPosisWalkable = _tilemap.CheckTileWalkable(PosX, PosZ + 1.0f + i);
-                    if (NextPosisWalkable == 2) Ini_End = new Vector3(PosX, transform.localPosition.y, PosZ  + i );
-                    else if (NextPosisWalkable == 3) Ini_End = new Vector3(PosX, transform.localPosition.y, PosZ + 1.0f + i);
+                Ini_End = new Vector3(8.75f, transform.position.y, transform.position.z);
+                //CheckTimes = (int)Mathf.Abs(11.75f - PosX);
+                CheckTimes = 3;
+                for (int i = 0; i < CheckTimes && NextPosisWalkable == 1; i++) {
+                    NextPosisWalkable = _tilemap.CheckTileWalkable(PosX - 4.75f + i, -1.3f - PosZ);
+                    if (NextPosisWalkable == 2) {Ini_End = new Vector3(PosX + i, transform.position.y, PosZ);} 
+                    else if (NextPosisWalkable == 3) Ini_End = new Vector3(PosX+1.0f+i, transform.position.y, PosZ);
                     unit = 1 + i;
                 }
                 break;

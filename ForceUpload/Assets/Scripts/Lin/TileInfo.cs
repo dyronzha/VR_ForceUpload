@@ -17,9 +17,9 @@ public class TileInfo : MonoBehaviour{
 
 
     void Update(){
-        if (Mathf.Abs(transform.localPosition.x - HUDPlayer.localPosition.x) < 0.05f && Mathf.Abs(transform.localPosition.z - HUDPlayer.localPosition.z) < 0.05f && Conveyor_Dir != 0){
-            float ConveyPosX = transform.localPosition.x;
-            float ConveyPosZ = transform.localPosition.z;
+        if (Mathf.Abs(transform.position.x - HUDPlayer.position.x) < 0.05f && Mathf.Abs(transform.position.z - HUDPlayer.position.z) < 0.05f && Conveyor_Dir != 0){
+            float ConveyPosX = transform.position.x;
+            float ConveyPosZ = transform.position.z;
             HUDPlayer.gameObject.GetComponent<Player_Move>().ForceConvey(ConveyPosX, ConveyPosZ, Conveyor_Dir);
         }
     }
