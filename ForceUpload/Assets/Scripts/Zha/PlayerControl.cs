@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     Transform curTransHand, lineReticle;
     LayerMask transMask;
 
-    Vector3 cameraOffset;
+    Vector3 cameraOffset, cameraFixPos;
 
     MultiContolBase targetControl;
 
@@ -69,9 +69,10 @@ public class PlayerControl : MonoBehaviour
 
     private void LateUpdate()
     {
-        //if (!roboMod) {
-        //    transform.position = (HUDCamera.position - cameraOffset); //Vector3.Lerp(transform.position, transform.position - (HUDCamera.localPosition - cameraOffset), Time.deltaTime*10.0f);
-        //}
+        if (!roboMod)
+        {
+            transform.position = cameraFixPos + (cameraOffset - HUDCamera.localPosition); //Vector3.Lerp(transform.position, transform.position - (HUDCamera.localPosition - cameraOffset), Time.deltaTime*10.0f);
+        }
     }
 
     void TransDetect() {
@@ -151,6 +152,7 @@ public class PlayerControl : MonoBehaviour
                         //HUDCamera.GetComponent<Camera>().enabled = false;
                         //UnityEngine.XR.InputTracking.disablePositionalTracking = true;
                         cameraOffset = HUDCamera.localPosition;
+                        cameraFixPos = transform.position;
                         transMask = oringinMask;
                         playerRobot.parent = null;
                         playerRobot.gameObject.SetActive(true);
