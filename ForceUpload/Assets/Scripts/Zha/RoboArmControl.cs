@@ -15,6 +15,8 @@ public class RoboArmControl : MultiContolBase
 
     //Transform test;
 
+    PlayerRobot robot;
+
 
     public void GiveInputAction(Valve.VR.SteamVR_Action_Single squeeze)
     {
@@ -28,9 +30,13 @@ public class RoboArmControl : MultiContolBase
         arm = body.Find("Arm");
         hand = arm.Find("Hand");
         armInitY = arm.localPosition.y;
-
-       // test = GameObject.Find("Sphere").transform;
+        robot = GameObject.Find("[CameraRig]").GetComponent<PlayerControl>().playerRobot;
+        // test = GameObject.Find("Sphere").transform;
     }
+    public void SetRobot(PlayerRobot r) {
+        robot = r;
+    }
+
 
     public override void Awake()
     {
@@ -60,7 +66,9 @@ public class RoboArmControl : MultiContolBase
             if (hits.Length > 0) {
                 grabObject = hits[0].transform;
                 grabObject.parent.parent = hand;
+
                 grib = true;
+                robot.canMove = false;
             }
             Debug.Log(hits.Length);
         }
@@ -68,6 +76,8 @@ public class RoboArmControl : MultiContolBase
             grib = false;
 
             grabObject.parent.parent = null;
+            robot.canFall = true;
+            robot.canMove = true;
 
         }
     }
