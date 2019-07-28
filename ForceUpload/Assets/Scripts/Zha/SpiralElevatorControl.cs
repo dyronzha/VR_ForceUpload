@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SpiralElevatorControl : MultiContolBase
 {
-    bool inCircle = false;
+    int transNum = 0;
+    Transform whereLook2;
+
     public SpiralElevatorControl(Transform t, Transform look) : base(t, look)
     {
 
@@ -22,7 +24,7 @@ public class SpiralElevatorControl : MultiContolBase
     Vector2 lastVector, curVector;
     Vector2[] recordPoint = new Vector2[3];
 
-    Transform test;
+    //Transform test;
 
     // Start is called before the first frame update
     public override void Init()
@@ -33,13 +35,22 @@ public class SpiralElevatorControl : MultiContolBase
         for (int i = 0; i < platforms.Length; i++) {
             platforms[i] = t.GetChild(i);
         }
+        whereLook2 = transform.Find("Pos2");
 
-        test = GameObject.Find("Sphere").transform;
+        //test = GameObject.Find("Sphere").transform;
+    }
+
+    public override Transform GetWhereLook()
+    {
+        if (transNum == 0) return whereLook;
+        else return whereLook2;
     }
 
     // Update is called once per frame
     public override void Update(float dt)
     {
+        if (HUDCamera.position.y > 7.35f && transNum == 0) transNum = 1;
+        else if (HUDCamera.position.y < 6.0f && transNum == 1) transNum = 0;
         if (circleTime < 0.1f)
         {
             circleTime += dt;
@@ -97,17 +108,19 @@ public class SpiralElevatorControl : MultiContolBase
             rotateSpeed += Time.deltaTime;
             if (rotateSpeed > maxRotateSpeed) rotateSpeed = maxRotateSpeed;
             Debug.Log("speed  plus " + rotateSpeed);
+            spiral.Rotate(cross * dt * new Vector3(0, 0, rotateSpeed * 50.0f));
+
             for (int i = 0; i < platforms.Length; i++)
             {
-                platforms[i].position += cross * dt * new Vector3(0, rotateSpeed, 0);
-                platforms[i].Rotate(cross * dt * new Vector3(0, rotateSpeed * 50.0f));
-                if (platforms[i].localPosition.y > 1.5f)
+                platforms[i].localPosition += cross * dt * new Vector3(0, rotateSpeed, 0);
+                platforms[i].Rotate(cross * dt * new Vector3(0, 0, rotateSpeed * 50.0f));
+                if (platforms[i].localPosition.y > 9.0f)
                 {
-                    platforms[i].localPosition = new Vector3(0, -2.0f, 0);
+                    platforms[i].localPosition = new Vector3(0, -0.7f, 0);
                 }
-                else if (platforms[i].localPosition.y < -2.5f)
+                else if (platforms[i].localPosition.y < -0.8f)
                 {
-                    platforms[i].localPosition = new Vector3(0, 1.3f, 0);
+                    platforms[i].localPosition = new Vector3(0, 8.9f, 0);
                 }
             }
 

@@ -37,6 +37,12 @@ public class PlayerControl : MonoBehaviour
 
     PlayerRobot playerRobot;
 
+    public static int level = 0;
+    bool nextLevel;
+    float nextLevelTime;
+    Transform[] levelPoints;
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -50,6 +56,11 @@ public class PlayerControl : MonoBehaviour
 
         blackOut = HUDCamera.GetChild(0).Find("BlackOut").GetComponent<UnityEngine.UI.Image>();
 
+        Transform points = GameObject.Find("GameManager").transform.Find("NextLevelPoint");
+        levelPoints = new Transform[points.childCount];
+        for (int i = 0; i < levelPoints.Length; i++) {
+            levelPoints[i] = points.GetChild(i);
+        }
         
     }
     void Start()
@@ -74,6 +85,34 @@ public class PlayerControl : MonoBehaviour
             targetControl.Update(deltaTime);
             TransDetect();
             if (!roboMod) playerRobot.Update(Time.deltaTime);
+            else {
+                if (!nextLevel)
+                {
+                    Vector3 curPos = new Vector3(HUDCamera.position.x, transform.position.y, HUDCamera.position.z);
+                    Collider[] hits = Physics.OverlapBox(curPos, new Vector3(0.3f, 0.3f, 0.3f), Quaternion.identity, 1 << LayerMask.NameToLayer("NextLevel"));
+                    if (hits != null && hits.Length > 0)
+                    {
+                        nextLevel = true;
+                        blackOut.enabled = true;
+                        transform.position = levelPoints[level].position;
+                        transform.rotation = levelPoints[level].rotation;
+                        PlayerControl.level++;
+                    }
+                }
+                else
+                {
+                    nextLevelTime += deltaTime * 2.0f;
+                    blackOut.color = new Color(0, 0, 0, 1.0f - nextLevelTime);
+                    if (nextLevelTime > 0.95f)
+                    {
+                        nextLevelTime = .0f;
+                        nextLevel = false;
+                        blackOut.color = new Color(0, 0, 0, 1);
+                        blackOut.enabled = false;
+                    }
+                }
+            }
+           
         } 
         else GoTrans();
 
@@ -86,7 +125,7 @@ public class PlayerControl : MonoBehaviour
         if (!roboMod)
         {
             if (targetControl is DroneControl) {
-                cameraFixPos = targetControl.whereLook.position - HUDCamera.transform.localPosition;
+                cameraFixPos = targetControl.GetWhereLook().position - HUDCamera.transform.localPosition;
                 Debug.Log("aaaaaa");
             }
 
@@ -174,11 +213,11 @@ public class PlayerControl : MonoBehaviour
 
                         transMask = oringinMask;
                         playerRobot.transform.localPosition = new Vector3(HUDCamera.localPosition.x, transform.localPosition.y, HUDCamera.localPosition.z);
-                        transform.rotation = Quaternion.LookRotation(new Vector3(HUDCamera.forward.x, 0, HUDCamera.forward.z), Vector3.up);
-                        playerRobot.transform.parent = null;
+                        playerRobot.transform.rotation = Quaternion.LookRotation(new Vector3(HUDCamera.forward.x, 0, HUDCamera.forward.z), Vector3.up);
+                        //playerRobot.transform.parent = null;
 
                         playerRobot.gameObject.SetActive(true);
-
+                        if (targetControl is RoboArmControl) playerRobot.canFall = true;
                     }
                     else
                     {
@@ -186,7 +225,7 @@ public class PlayerControl : MonoBehaviour
                         //UnityEngine.XR.InputTracking.disablePositionalTracking = false;
                         transMask = otherControlMask;
                         playerRobot.transform.gameObject.SetActive(false);
-
+                        if (targetControl is RoboArmControl) playerRobot.canFall = false;
                     }
                     
                 }
@@ -204,12 +243,12 @@ public class PlayerControl : MonoBehaviour
                 blackOut.enabled = false;
                 //blackOut.color = new Color(0, 0, 0, 1);
 
-
+                playerRobot.transform.parent = null;
 
                 transTime = .0f;
-                transform.position = targetControl.whereLook.position - HUDCamera.transform.localPosition;
+                transform.position = targetControl.GetWhereLook().position - HUDCamera.transform.localPosition;
                 Debug.Log(targetControl.transform.name);
-                transform.rotation = targetControl.whereLook.rotation;
+                transform.rotation = targetControl.GetWhereLook().rotation;
 
                 cameraOffset = HUDCamera.localPosition;
                 cameraFixPos = transform.position;
