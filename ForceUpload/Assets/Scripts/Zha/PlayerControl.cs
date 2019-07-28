@@ -72,7 +72,7 @@ public class PlayerControl : MonoBehaviour
         playerRobot = new PlayerRobot();
         playerRobot.Init(player);
         targetControl = control;
-        player.gameObject.SetActive(false);
+        //player.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -89,7 +89,8 @@ public class PlayerControl : MonoBehaviour
                 if (!nextLevel)
                 {
                     Vector3 curPos = new Vector3(HUDCamera.position.x, transform.position.y, HUDCamera.position.z);
-                    Collider[] hits = Physics.OverlapBox(curPos, new Vector3(0.3f, 0.3f, 0.3f), Quaternion.identity, 1 << LayerMask.NameToLayer("NextLevel"));
+                    Debug.Log("next    "  + curPos);
+                    Collider[] hits = Physics.OverlapBox(curPos, new Vector3(1.0f, 1.0f, 1.0f), Quaternion.identity, 1 << LayerMask.NameToLayer("NextLevel"));
                     if (hits != null && hits.Length > 0)
                     {
                         nextLevel = true;
@@ -126,7 +127,6 @@ public class PlayerControl : MonoBehaviour
         {
             if (targetControl is DroneControl) {
                 cameraFixPos = targetControl.GetWhereLook().position - HUDCamera.transform.localPosition;
-                Debug.Log("aaaaaa");
             }
 
             transform.position = cameraFixPos + (cameraOffset - HUDCamera.localPosition); //Vector3.Lerp(transform.position, transform.position - (HUDCamera.localPosition - cameraOffset), Time.deltaTime*10.0f);
@@ -212,7 +212,7 @@ public class PlayerControl : MonoBehaviour
                         //UnityEngine.XR.InputTracking.disablePositionalTracking = true;
 
                         transMask = oringinMask;
-                        playerRobot.transform.localPosition = new Vector3(HUDCamera.localPosition.x, transform.localPosition.y, HUDCamera.localPosition.z);
+                        playerRobot.transform.localPosition = new Vector3(HUDCamera.localPosition.x, 0, HUDCamera.localPosition.z);
                         playerRobot.transform.rotation = Quaternion.LookRotation(new Vector3(HUDCamera.forward.x, 0, HUDCamera.forward.z), Vector3.up);
                         //playerRobot.transform.parent = null;
 
@@ -243,10 +243,12 @@ public class PlayerControl : MonoBehaviour
                 blackOut.enabled = false;
                 //blackOut.color = new Color(0, 0, 0, 1);
 
-                playerRobot.transform.parent = null;
+                roboMod = !roboMod;
 
-                transTime = .0f;
-                transform.position = targetControl.GetWhereLook().position - HUDCamera.transform.localPosition;
+                if (!roboMod)playerRobot.transform.parent = null;
+
+                
+                transform.position = new Vector3(targetControl.GetWhereLook().position.x - HUDCamera.transform.localPosition.x, targetControl.GetWhereLook().position.y, targetControl.GetWhereLook().position.z - HUDCamera.transform.localPosition.z);
                 Debug.Log(targetControl.transform.name);
                 transform.rotation = targetControl.GetWhereLook().rotation;
 
@@ -254,7 +256,7 @@ public class PlayerControl : MonoBehaviour
                 cameraFixPos = transform.position;
 
 
-                roboMod = !roboMod;
+
                 targetControl.Awake();
                 if (roboMod) playerRobot.transform.parent = transform;
             }
@@ -265,6 +267,7 @@ public class PlayerControl : MonoBehaviour
                     blackOut.enabled = false;
                     goBlcak = false;
                     goTrans = false;
+                    transTime = .0f;
                 }
             }
         }

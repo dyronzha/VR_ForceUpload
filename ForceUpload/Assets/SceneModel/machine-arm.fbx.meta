@@ -3,130 +3,66 @@ guid: 8f66389837ac769469b428665a27a17c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: pCube31
-    100004: pCube32
-    100006: pCylinder29
-    100008: pCylinder30
-    100010: pCylinder31
-    100012: pCylinder32
-    100014: polySurface10
-    100016: polySurface11
-    100018: pSphere1
-    100020: pSphere2
-    100022: pSphere3
-    100024: pTorus1
-    100026: transform10
-    100028: transform11
-    100030: transform12
-    100032: transform13
-    100034: transform14
-    100036: transform15
-    100038: transform16
-    100040: transform9
-    100042: base
-    100044: grab
-    100046: head
-    100048: joint1
-    100050: joint10
-    100052: joint11
-    100054: joint12
-    100056: joint2
-    100058: joint3
-    100060: joint4
-    100062: joint5
-    100064: joint6
-    100066: joint7
-    100068: joint8
-    100070: joint9
-    100072: neck
-    100074: ring
-    400000: //RootNode
-    400002: pCube31
-    400004: pCube32
-    400006: pCylinder29
-    400008: pCylinder30
-    400010: pCylinder31
-    400012: pCylinder32
-    400014: polySurface10
-    400016: polySurface11
-    400018: pSphere1
-    400020: pSphere2
-    400022: pSphere3
-    400024: pTorus1
-    400026: transform10
-    400028: transform11
-    400030: transform12
-    400032: transform13
-    400034: transform14
-    400036: transform15
-    400038: transform16
-    400040: transform9
-    400042: base
-    400044: grab
-    400046: head
-    400048: joint1
-    400050: joint10
-    400052: joint11
-    400054: joint12
-    400056: joint2
-    400058: joint3
-    400060: joint4
-    400062: joint5
-    400064: joint6
-    400066: joint7
-    400068: joint8
-    400070: joint9
-    400072: neck
-    400074: ring
+    100000: base
+    100002: grab
+    100004: joint10
+    100006: joint11
+    100008: joint12
+    100010: joint13
+    100012: joint14
+    100014: joint15
+    100016: joint3
+    100018: joint4
+    100020: joint5
+    100022: joint6
+    100024: joint7
+    100026: joint8
+    100028: joint9
+    100030: //RootNode
+    100032: neck
+    100034: pSphere1
+    100036: pSphere2
+    100038: pTorus1
+    100040: ring
+    400000: base
+    400002: grab
+    400004: joint10
+    400006: joint11
+    400008: joint12
+    400010: joint13
+    400012: joint14
+    400014: joint15
+    400016: joint3
+    400018: joint4
+    400020: joint5
+    400022: joint6
+    400024: joint7
+    400026: joint8
+    400028: joint9
+    400030: //RootNode
+    400032: neck
+    400034: pSphere1
+    400036: pSphere2
+    400038: pTorus1
+    400040: ring
     2100000: lambert1
-    2100002: lambert2
-    2100004: lambert3
-    2300000: pCube31
-    2300002: pCube32
-    2300004: pCylinder29
-    2300006: pCylinder30
-    2300008: pCylinder31
-    2300010: pCylinder32
-    2300012: polySurface10
-    2300014: polySurface11
-    2300016: pSphere1
-    2300018: pSphere2
-    2300020: pSphere3
-    2300022: pTorus1
-    2300024: base
-    2300026: grab
-    2300028: neck
-    3300000: pCube31
-    3300002: pCube32
-    3300004: pCylinder29
-    3300006: pCylinder30
-    3300008: pCylinder31
-    3300010: pCylinder32
-    3300012: polySurface10
-    3300014: polySurface11
-    3300016: pSphere1
-    3300018: pSphere2
-    3300020: pSphere3
-    3300022: pTorus1
-    3300024: base
-    3300026: grab
-    3300028: neck
-    4300000: pCube31
-    4300002: pCube32
-    4300004: pCylinder31
-    4300006: pCylinder32
-    4300008: pCylinder29
-    4300010: pCylinder30
-    4300012: polySurface10
-    4300014: polySurface11
-    4300016: pSphere3
-    4300018: pSphere2
-    4300020: pSphere1
-    4300022: pTorus1
-    4300024: grab
-    4300026: neck
-    4300028: base
+    2300000: pSphere1
+    2300002: pSphere2
+    2300004: pTorus1
+    3300000: pSphere1
+    3300002: pSphere2
+    3300004: pTorus1
+    4300000: grab
+    4300002: neck
+    4300004: base
+    4300006: pSphere2
+    4300008: pSphere1
+    4300010: pTorus1
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: base
+    13700002: grab
+    13700004: neck
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -179,8 +115,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -207,7 +143,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
