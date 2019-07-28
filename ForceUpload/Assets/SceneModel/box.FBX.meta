@@ -1,70 +1,14 @@
 fileFormatVersion: 2
-guid: 8f66389837ac769469b428665a27a17c
+guid: e6e34f7dd515977488aa82e8671b8eca
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: base
-    100002: grab
-    100004: ikHandle1
-    100006: joint10
-    100008: joint11
-    100010: joint12
-    100012: joint13
-    100014: joint14
-    100016: joint15
-    100018: joint3
-    100020: joint4
-    100022: joint5
-    100024: joint6
-    100026: joint7
-    100028: joint8
-    100030: joint9
-    100032: //RootNode
-    100034: neck
-    100036: pSphere1
-    100038: pSphere2
-    100040: pTorus1
-    100042: ring
-    400000: base
-    400002: grab
-    400004: ikHandle1
-    400006: joint10
-    400008: joint11
-    400010: joint12
-    400012: joint13
-    400014: joint14
-    400016: joint15
-    400018: joint3
-    400020: joint4
-    400022: joint5
-    400024: joint6
-    400026: joint7
-    400028: joint8
-    400030: joint9
-    400032: //RootNode
-    400034: neck
-    400036: pSphere1
-    400038: pSphere2
-    400040: pTorus1
-    400042: ring
+    100000: //RootNode
+    400000: //RootNode
     2100000: lambert1
-    2300000: pSphere1
-    2300002: pSphere2
-    2300004: pTorus1
-    3300000: pSphere1
-    3300002: pSphere2
-    3300004: pTorus1
-    4300000: grab
-    4300002: neck
-    4300004: base
-    4300006: pSphere2
-    4300008: pSphere1
-    4300010: pTorus1
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: base
-    13700002: grab
-    13700004: neck
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Object019
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -117,8 +61,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -145,7 +89,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
