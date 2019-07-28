@@ -45,10 +45,10 @@ public class TileMap : MonoBehaviour{
         tiles[6, 6] = 1;
 
         //木箱位置
-        tiles[1, 4] = 2;
-        tiles[3, 2] = 2;
-        tiles[5, 4] = 2;
-        tiles[6, 3] = 2;
+        //tiles[1, 4] = 2;
+        //tiles[3, 2] = 2;
+        //tiles[5, 4] = 2;
+        //tiles[6, 3] = 2;
 
         //輸送帶位置
         tiles[4, 0] = 3;
