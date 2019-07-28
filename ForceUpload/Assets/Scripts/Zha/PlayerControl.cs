@@ -35,14 +35,15 @@ public class PlayerControl : MonoBehaviour
     bool goBlcak = false;
     UnityEngine.UI.Image blackOut;
 
-    PlayerRobot playerRobot;
+    public PlayerRobot playerRobot;
 
     public static int level = 0;
     bool nextLevel;
     float nextLevelTime;
     Transform[] levelPoints;
 
-
+    addOutline outLine;
+    GameObject addLineObject;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -61,7 +62,9 @@ public class PlayerControl : MonoBehaviour
         for (int i = 0; i < levelPoints.Length; i++) {
             levelPoints[i] = points.GetChild(i);
         }
-        
+        outLine = GetComponent<addOutline>();
+
+
     }
     void Start()
     {
@@ -70,6 +73,7 @@ public class PlayerControl : MonoBehaviour
 
     public void SetTargetControl(Transform player, MultiContolBase control) {
         playerRobot = new PlayerRobot();
+        playerRobot.SetCameraHands(HUDCamera, rightHand, leftHand);
         playerRobot.Init(player);
         targetControl = control;
         //player.gameObject.SetActive(false);
@@ -79,6 +83,14 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         //Debug.Log(SqueezeAction.GetAxis(SteamVR_Input_Sources.RightHand));
+        if (Input.GetKeyDown(KeyCode.O)) {
+            nextLevel = true;
+            blackOut.enabled = true;
+            transform.position = levelPoints[level].position;
+            transform.rotation = levelPoints[level].rotation;
+            PlayerControl.level++;
+        }
+
 
         deltaTime = Time.deltaTime;
         if (!goTrans) {
@@ -142,6 +154,24 @@ public class PlayerControl : MonoBehaviour
                 isTransTouchDown = true;
                 curTransHand = leftHand;
                 transLineRender.enabled = true;
+
+                RaycastHit hit;
+                Physics.Raycast(curTransHand.position, curTransHand.forward, out hit, transDist, transMask);
+
+                //if (hit.transform != null)
+                //{
+                //    //if (addLineObject == null)
+                //    //{
+                //    //    addLineObject = hit.transform.gameObject;
+                //    //    outLine.addline(addLineObject);
+                //    //}
+
+                //}
+                //else
+                //{
+                //    //if (addLineObject != null) outLine.removeLine(addLineObject);
+                //}
+
             }
             else if (transAction.GetStateDown(SteamVR_Input_Sources.RightHand))
             {
@@ -149,6 +179,21 @@ public class PlayerControl : MonoBehaviour
                 isTransTouchDown = true;
                 curTransHand = rightHand;
                 transLineRender.enabled = true;
+
+                RaycastHit hit;
+                Physics.Raycast(curTransHand.position, curTransHand.forward, out hit, transDist, transMask);
+
+                //if (hit.transform != null)
+                //{
+                //    //if (addLineObject == null) {
+                //    //    addLineObject = hit.transform.gameObject;
+                //    //    outLine.addline(addLineObject);
+                //    //}
+
+                //}
+                //else {
+                //    if(addLineObject != null) outLine.removeLine(addLineObject);
+                //}
             }
 
 
@@ -200,6 +245,8 @@ public class PlayerControl : MonoBehaviour
                 if (hit.transform != null)
                 {
                     Debug.Log(hit.transform.name);
+                    //if (addLineObject != null) outLine.removeLine(addLineObject);
+
                     targetControl = GameManager.Instance.LookUpMultiControl(hit.transform.parent.name);
 
                     goTrans = true;
@@ -217,7 +264,7 @@ public class PlayerControl : MonoBehaviour
                         //playerRobot.transform.parent = null;
 
                         playerRobot.gameObject.SetActive(true);
-                        if (targetControl is RoboArmControl) playerRobot.canFall = true;
+                        //if (targetControl is RoboArmControl) playerRobot.canFall = true;
                     }
                     else
                     {
@@ -273,6 +320,9 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+
+    public void Die() {
+    }
 
 }
 

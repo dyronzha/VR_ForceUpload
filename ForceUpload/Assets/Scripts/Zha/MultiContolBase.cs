@@ -57,45 +57,45 @@ public class MultiContolBase
                 break;
 
             case 1:
-                Vector3 curPos = new Vector3(HUDCamera.position.x, transform.position.y, HUDCamera.position.z);
-                hits = Physics.OverlapBox(curPos, new Vector3(0.3f, 0.3f, 0.3f), Quaternion.identity, 1 << LayerMask.NameToLayer("MoveBoard"));
-                //Debug.DrawRay(curPos, new Vector3(0,-0.3f,0), Color.red);
+                //Vector3 curPos = new Vector3(HUDCamera.position.x, transform.position.y, HUDCamera.position.z);
+                //hits = Physics.OverlapBox(curPos, new Vector3(0.3f, 0.3f, 0.3f), Quaternion.identity, 1 << LayerMask.NameToLayer("MoveBoard"));
+                ////Debug.DrawRay(curPos, new Vector3(0,-0.3f,0), Color.red);
 
-                if (hits != null && hits.Length > 0)
-                {
-                    Debug.Log("hit board");
-                    onMoveBoard = true;
+                //if (hits != null && hits.Length > 0)
+                //{
+                //    Debug.Log("hit board");
+                //    onMoveBoard = true;
 
-                    for (int i = 0; i < hits.Length; i++)
-                    {
-                        bool ishit = false;
-                        for (int j = 0; j < lastHit.Length; j++)
-                        {
-                            if (lastHit[j] != null)
-                            {
-                                if (hits[i] == lastHit[j])
-                                {
-                                    ishit = true;
-                                    break;
-                                }
-                            }
-                        }
-                        if (!ishit)
-                        {
-                            lastHit[lastCount] = hits[i];
-                            moveDir = Vector3.Lerp(moveDir, lastHit[lastCount].transform.forward, dt * 30.0f).normalized;
-                            lastCount++;
-                            if (lastCount == 3) lastCount = 0;
-                        }
-                    }
+                //    for (int i = 0; i < hits.Length; i++)
+                //    {
+                //        bool ishit = false;
+                //        for (int j = 0; j < lastHit.Length; j++)
+                //        {
+                //            if (lastHit[j] != null)
+                //            {
+                //                if (hits[i] == lastHit[j])
+                //                {
+                //                    ishit = true;
+                //                    break;
+                //                }
+                //            }
+                //        }
+                //        if (!ishit)
+                //        {
+                //            lastHit[lastCount] = hits[i];
+                //            moveDir = Vector3.Lerp(moveDir, lastHit[lastCount].transform.forward, dt * 30.0f).normalized;
+                //            lastCount++;
+                //            if (lastCount == 3) lastCount = 0;
+                //        }
+                //    }
 
-                }
-                else onMoveBoard = false;
+                //}
+                //else onMoveBoard = false;
 
-                if (onMoveBoard)
-                {
-                    transform.position += dt * moveDir;
-                }
+                //if (onMoveBoard)
+                //{
+                //    transform.position += dt * moveDir;
+                //}
                 break;
         }
 

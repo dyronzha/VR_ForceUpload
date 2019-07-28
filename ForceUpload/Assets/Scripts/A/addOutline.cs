@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class addOutline : MonoBehaviour
 {
-    public Material outlineMaterial;
+    //public Material outlineMaterial;
     Material[] originMat;
    // GameObject lastObj;
     // Start is called before the first frame update
