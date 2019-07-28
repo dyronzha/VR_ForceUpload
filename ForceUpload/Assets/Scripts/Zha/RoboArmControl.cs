@@ -13,7 +13,7 @@ public class RoboArmControl : MultiContolBase
     float armInitY, handInitY;
     Transform  body, arm, hand, grabObject;
 
-    Transform test;
+    //Transform test;
 
 
     public void GiveInputAction(Valve.VR.SteamVR_Action_Single squeeze)
@@ -29,7 +29,7 @@ public class RoboArmControl : MultiContolBase
         hand = arm.Find("Hand");
         armInitY = arm.localPosition.y;
 
-        test = GameObject.Find("Sphere").transform;
+       // test = GameObject.Find("Sphere").transform;
     }
 
     public override void Awake()

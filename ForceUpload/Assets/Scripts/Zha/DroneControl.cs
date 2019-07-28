@@ -13,7 +13,7 @@ public class DroneControl : MultiContolBase
     Transform  player, wing, wing2;
     Vector3 flyVector, playerOffset;
 
-    Transform test0, test1;
+    //Transform test0, test1;
 
     // Start is called before the first frame update
     public override void Init()
@@ -21,8 +21,8 @@ public class DroneControl : MultiContolBase
         wing = transform.Find("wing");
         wing2 = transform.Find("wing2");
 
-        test0 = GameObject.Find("droneC").transform;
-        test1 = GameObject.Find("droneC2").transform;
+       // test0 = GameObject.Find("droneC").transform;
+       // test1 = GameObject.Find("droneC2").transform;
     }
 
     //public override void Awake()

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerRobot
 {
+    int level = 0;
 
     public Transform transform;
     public GameObject gameObject;
 
+    public bool canFall = false;
     bool onGround = true;
     float deltaTime = .0f;
     float gravity = 5.0f;
@@ -25,7 +27,25 @@ public class PlayerRobot
     public void Update(float dt)
     {
         deltaTime = dt;
-        Fall();
+
+        switch (PlayerControl.level) {
+            case 0:
+                Vector3 curPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                Collider[] hits = Physics.OverlapBox(curPos, new Vector3(0.3f, 0.3f, 0.3f), Quaternion.identity, 1 << LayerMask.NameToLayer("Platform"));
+                if (hits != null && hits.Length > 0)
+                {
+                    transform.parent = hits[0].transform;
+                }
+                break;
+
+            case 1:
+                if (canFall) Fall();
+                break;
+        }
+
+        
+
+     
     }
     void Fall() {
         if (onGround && !Physics.Raycast(transform.position, new Vector3(0,-1,0), 0.5f, 1 << LayerMask.NameToLayer("Ground"))) {
