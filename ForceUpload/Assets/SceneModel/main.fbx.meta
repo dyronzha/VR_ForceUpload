@@ -408,7 +408,17 @@ ModelImporter:
     4300142: light
     4300144: chest
     4300146: chestout
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 3b69ad89eb4d9f046bd357b295f2da88, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: main
+    second: {fileID: 2800000, guid: 98cd17b4e1734724c88274893ad9dc69, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

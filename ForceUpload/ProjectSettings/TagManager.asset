@@ -19,11 +19,11 @@ TagManager:
   - PostProcessing
   - TransControl
   - OringinControl
-  - 
-  - 
-  - 
-  - 
-  - 
+  - GribObject
+  - Box
+  - Ground
+  - DeadArea
+  - MoveBoard
   - 
   - 
   - 

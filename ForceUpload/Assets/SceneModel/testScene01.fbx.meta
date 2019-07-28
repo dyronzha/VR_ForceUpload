@@ -84,24 +84,11 @@ ModelImporter:
     100156: polySurface009
     100158: polySurface010
     100160: polySurface011
-    100162: polySurface1
-    100164: polySurface2
-    100166: polySurface3
-    100168: polySurface4
-    100170: polySurface5
-    100172: polySurface6
-    100174: polySurface7
-    100176: polySurface8
-    100178: pPlane1
-    100180: stick
-    100182: //RootNode
-    100184: transform1
-    100186: transform2
-    100188: transform3
-    100190: transform4
-    100192: transform5
-    100194: transform6
-    100196: transform7
+    100162: polySurface7
+    100164: polySurface8
+    100166: pPlane1
+    100168: stick
+    100170: //RootNode
     400000: Box001
     400002: fan
     400004: pCube027
@@ -183,24 +170,11 @@ ModelImporter:
     400156: polySurface009
     400158: polySurface010
     400160: polySurface011
-    400162: polySurface1
-    400164: polySurface2
-    400166: polySurface3
-    400168: polySurface4
-    400170: polySurface5
-    400172: polySurface6
-    400174: polySurface7
-    400176: polySurface8
-    400178: pPlane1
-    400180: stick
-    400182: //RootNode
-    400184: transform1
-    400186: transform2
-    400188: transform3
-    400190: transform4
-    400192: transform5
-    400194: transform6
-    400196: transform7
+    400162: polySurface7
+    400164: polySurface8
+    400166: pPlane1
+    400168: stick
+    400170: //RootNode
     2100000: lambert1
     2100002: lambert2
     2100004: No Name
@@ -488,35 +462,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Take 001
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 12
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []

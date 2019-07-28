@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.forceupload.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\DyronChou\\Documents\\GitHub\\VR_ForceUpload\\ForceUpload\\actions.json",
+      "action_manifest_path": "E:\\VR_ForceUpload\\ForceUpload\\actions.json",
       "strings": {
         "en_us": {
           "name": "ForceUpload [Testing]"
