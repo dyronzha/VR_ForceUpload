@@ -14,7 +14,7 @@ public class SpiralElevatorControl : MultiContolBase
 
     Transform spiral;
     Transform[] platforms;
-    float maxRotateSpeed = 5.0f, rotateSpeed = .0f;
+    float maxRotateSpeed = 1.0f, rotateSpeed = .0f;
 
     bool hasThree = false;
     int cirNum = 0;
@@ -24,6 +24,8 @@ public class SpiralElevatorControl : MultiContolBase
     Vector2 lastVector, curVector;
     Vector2[] recordPoint = new Vector2[3];
 
+    Transform player;
+    Collider[] panel = new Collider[2];
     //Transform test;
 
     // Start is called before the first frame update
@@ -37,6 +39,11 @@ public class SpiralElevatorControl : MultiContolBase
         }
         whereLook2 = transform.Find("Pos2");
 
+        player = GameObject.Find("PlayerRobot").transform;
+        player.gameObject.SetActive(false);
+
+        panel[0] = transform.Find("ControlPanel").GetComponent<Collider>() ;
+        panel[1] = transform.Find("ControlPanel1").GetComponent<Collider>();
         //test = GameObject.Find("Sphere").transform;
     }
 
@@ -49,8 +56,18 @@ public class SpiralElevatorControl : MultiContolBase
     // Update is called once per frame
     public override void Update(float dt)
     {
-        if (HUDCamera.position.y > 7.35f && transNum == 0) transNum = 1;
-        else if (HUDCamera.position.y < 6.0f && transNum == 1) transNum = 0;
+        Debug.Log(HUDCamera.position.y);
+        if (player.position.y > 5.0f && transNum == 0)
+        {
+            transNum = 1;
+            panel[0].enabled = false;
+            panel[1].enabled = true;
+        }
+        else if (player.position.y < 4.5f && transNum == 1) {
+            transNum = 0;
+            panel[1].enabled = false;
+            panel[0].enabled = true;
+        } 
         if (circleTime < 0.1f)
         {
             circleTime += dt;
@@ -107,13 +124,13 @@ public class SpiralElevatorControl : MultiContolBase
         {
             rotateSpeed += Time.deltaTime;
             if (rotateSpeed > maxRotateSpeed) rotateSpeed = maxRotateSpeed;
-            Debug.Log("speed  plus " + rotateSpeed);
-            spiral.Rotate(cross * dt * new Vector3(0, 0, rotateSpeed * 50.0f));
+            //Debug.Log("speed  plus " + rotateSpeed);
+            spiral.Rotate(cross * dt * new Vector3(0, 0, maxRotateSpeed * 150.0f));
 
             for (int i = 0; i < platforms.Length; i++)
             {
-                platforms[i].localPosition += cross * dt * new Vector3(0, rotateSpeed, 0);
-                platforms[i].Rotate(cross * dt * new Vector3(0, 0, rotateSpeed * 50.0f));
+                platforms[i].localPosition += cross * dt * new Vector3(0, maxRotateSpeed, 0);
+                platforms[i].Rotate(cross * dt * new Vector3(0, 0, maxRotateSpeed * 150.0f));
                 if (platforms[i].localPosition.y > 9.0f)
                 {
                     platforms[i].localPosition = new Vector3(0, -0.7f, 0);
